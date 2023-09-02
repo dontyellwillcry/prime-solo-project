@@ -1,0 +1,7 @@
+.background {
+    background-image: url('/src/images/bg/5.jpg'); /* Path to your PNG file */
+    background-size: cover; /* Adjust this based on your requirements */
+    /* Add other background properties like background-repeat, background-position, etc. */
+  }
+
+  

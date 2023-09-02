@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import AdminPage from '../AdminPage/AdminPage';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
@@ -58,6 +58,12 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+          exact
+          path="/admin"
+          >
+            <AdminPage />
           </ProtectedRoute>
 
           <ProtectedRoute
