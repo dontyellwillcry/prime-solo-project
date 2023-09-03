@@ -59,10 +59,12 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+          {/* Admin page. protected. */}
           <ProtectedRoute
           exact
           path="/admin"
           >
+            {/* {user.access_level === 10} */}
             <AdminPage />
           </ProtectedRoute>
 
