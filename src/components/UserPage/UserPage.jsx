@@ -21,7 +21,8 @@ function UserPage() {
       <ul>
         {ingredientReducer.map((ingredient) => (
           <li key={ingredient.id}>
-            {ingredient.name} - Type: {ingredient.type}
+            <img src={ingredient.image} alt={ingredient.name} />
+            {ingredient.name} - Type: {ingredient.type} 
           </li>
         ))}
       </ul>
