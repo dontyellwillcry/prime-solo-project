@@ -13,7 +13,10 @@ function UserPage() {
   }, []);
 
 
-
+  const componentStyles = {
+    backgroundImage: 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")', // Replace with the URL of your image
+    backgroundSize: 'cover', 
+  };
 
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -24,9 +27,9 @@ function UserPage() {
 
   return (
     // <div className="container">
-    <>
+    <div style={componentStyles}>
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+      {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
       <ul>
         {ingredientReducer.map((ingredient) => (
@@ -36,8 +39,8 @@ function UserPage() {
           </li>
         ))}
       </ul>
-      </>
-    // </div>
+      
+    </div>
   );
 }
 
