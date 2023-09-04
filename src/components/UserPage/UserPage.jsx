@@ -9,10 +9,19 @@ function UserPage() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_INGREDIENT" });
+    dispatch({ type: "FETCH_RECIPE" });
   }, []);
+
+
+
+
+
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
+
+
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
