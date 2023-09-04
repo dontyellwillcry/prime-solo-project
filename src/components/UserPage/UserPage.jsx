@@ -23,10 +23,11 @@ function UserPage() {
 
 
   return (
-    <div className="container">
+    // <div className="container">
+    <>
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      {/* <LogOutButton className="btn" /> */}
       <ul>
         {ingredientReducer.map((ingredient) => (
           <li key={ingredient.id}>
@@ -35,7 +36,8 @@ function UserPage() {
           </li>
         ))}
       </ul>
-    </div>
+      </>
+    // </div>
   );
 }
 
