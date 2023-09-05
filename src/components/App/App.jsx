@@ -5,20 +5,20 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import AdminPage from '../AdminPage/AdminPage';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import BackgroundImage from '../BackgroundImage/BackgroundImage';
 
 import './App.css';
 
@@ -34,7 +34,9 @@ function App() {
   return (
     <Router>
       <div>
+        
         <Nav />
+        <BackgroundImage />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />

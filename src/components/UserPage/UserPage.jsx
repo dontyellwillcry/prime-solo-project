@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import LogOutButton from "../LogOutButton/LogOutButton";
+// import LogOutButton from "../LogOutButton/LogOutButton";
 import "./UserPage.css";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -17,11 +16,33 @@ function UserPage() {
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const [formData, setFormData] = useState("");
+  const [recipe, setRecipe] = useState({
+    name: '',
+    health: 0,
+    hunger: 0,
+    sanity: 0,
+    ingredient_ids: [],
+    description: '',
+    image: '',
+  });
 
+
+
+  // Function to handle the search input from the user. The input will match against all items in the 
+  // reducer and return any matches.
   function searchRecipe(event) {
     event.preventDefault();
-    if (formData === recipeReducer[0].name) {
-      console.log(recipeReducer[0]);
+    let foundRecipe = null; // Initialize a variable to store the found recipe
+    recipeReducer.forEach(function (item) {
+      if (formData === item.name) {
+        foundRecipe = item; // Store the matched item in foundRecipe
+      }
+    });
+  
+    if (foundRecipe) {
+      // If a matching recipe was found, update the state
+      setRecipe(foundRecipe);
+      console.log("Match found:", foundRecipe);
     } else {
       console.log("No match");
     }
