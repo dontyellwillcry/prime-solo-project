@@ -20,8 +20,29 @@ function* fetchRecipe() {
   } 
 }
 
+
+function* sendRecipe(action) {
+  try {
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    // Assuming 'action.payload' contains the form data
+    const response = yield axios.post('/api/recipe', action.payload, config);
+
+    yield put({ type: 'RECIPE_SENT_SUCCESS', payload: response.data });
+  } catch (error) {
+    console.log('RECIPE_SENT_FAILED', error);
+    yield put({ type: 'RECIPE_SENT_FAILED', payload: error.message });
+  }
+}
+
+
 function* recipeSaga() {
   yield takeLatest('FETCH_RECIPE', fetchRecipe);
+  yield takeLatest('SAVE_RECIPE', sendRecipe);
+
 }
 
 export default recipeSaga;

@@ -14,5 +14,22 @@ router.get('/', (req, res) => {
       })
   });
 
+  router.post('/', (req, res) => {
+    // POST route code here
+    console.log(req.body)
+    const ingredientIds = req.body.ingredient_ids.split(',').map(Number);
 
-  module.exports = router;
+    let queryText = `INSERT INTO recipe (name, health, hunger, sanity, ingredient_ids, description, image)
+    VALUES ($1, $2, $3, $4, $5, $6, $7);
+    `
+    pool.query(queryText, [req.body.name, req.body.health, req.body.hunger, req.body.sanity, ingredientIds, req.body.description, req.body.image])
+    .then((result) => {
+        res.sendStatus(200);
+    }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+    });
+  });
+
+
+  module.exports = router;  

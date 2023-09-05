@@ -16,8 +16,13 @@ const RecipeForm = () => {
     image: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  // This destructuring targets a specific event. In my case, anytime someone types in the inputs
+  // the const name/value is the "name" of the input and the value is the input from the user
+  // we then use a spread syntax to create a 'copy' of the object.
+  // When we enclose the [name] we are setting the key of the new object to the {name, value}
+  // from the target event. Same thing for the value.
+  const handleChange = (event) => {
+    const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value,
