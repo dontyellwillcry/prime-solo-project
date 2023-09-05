@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import  './UserPage.css';
+import React, { useEffect, useState } from "react";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import "./UserPage.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -12,35 +12,48 @@ function UserPage() {
     dispatch({ type: "FETCH_INGREDIENT" });
     dispatch({ type: "FETCH_RECIPE" });
   }, []);
-
-
-  const componentStyles = {
-    backgroundImage: 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")', // Replace with the URL of your image
-    backgroundSize: 'cover', 
-  };
-
-
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
+  const recipeReducer = useSelector((store) => store.recipeReducer);
+  const [formData, setFormData] = useState("");
 
-
+  function searchRecipe(event) {
+    event.preventDefault();
+    if (formData === recipeReducer[0].name) {
+      console.log(recipeReducer[0]);
+    } else {
+      console.log("No match");
+    }
+  }
 
   return (
     // <div className="container">
-    <div >
+    <div>
       <h2>Welcome, {user.username}!</h2>
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
+      <form onSubmit={searchRecipe}>
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            // value={formData.name}
+            onChange={(event) => setFormData(event.target.value)}
+          />
+          <button type="submit">SEARCH</button>
+        </div>
+      </form>
       <ul>
         {ingredientReducer.map((ingredient) => (
           <li key={ingredient.id}>
             <img src={ingredient.image} alt={ingredient.name} />
-            {ingredient.name} - Type: {ingredient.type} 
+            {ingredient.name} - Type: {ingredient.type}
           </li>
         ))}
       </ul>
-      
     </div>
   );
 }

@@ -21,7 +21,10 @@ const RecipeForm = () => {
   // we then use a spread syntax to create a 'copy' of the object.
   // When we enclose the [name] we are setting the key of the new object to the {name, value}
   // from the target event. Same thing for the value.
+
+
   const handleChange = (event) => {
+    event.preventDefault(); // is this needed??
     const { name, value } = event.target;
     setFormData({
       ...formData,
@@ -30,7 +33,6 @@ const RecipeForm = () => {
   };
 
   const handleDispatch = () => {
-    // Define the action type and payload directly and dispatch it
     const action = {
       type: 'SAVE_RECIPE',
       payload: formData,
