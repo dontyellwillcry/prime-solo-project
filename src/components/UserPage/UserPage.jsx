@@ -75,6 +75,21 @@ function UserPage() {
           </li>
         ))}
       </ul>
+      {recipe.name !== '' ? (
+        <ul>
+          <li>Name: {recipe.name}</li>
+          <li>Health: {recipe.health}</li>
+          <li>Hunger: {recipe.hunger}</li>
+          <li>Sanity: {recipe.sanity}</li>
+          <li>Ingredient IDs: {recipe.ingredient_ids.join(", ")}</li>
+          <li>Description: {recipe.description}</li>
+          <img src={recipe.image} alt="Recipe Image" />
+          <button>Favorite</button>
+          
+        </ul>
+      ) : (
+        <h2>WHY AM I SO BAD AT COMPONENTS....recipe will show up here.</h2>
+      )}
     </div>
   );
 }
