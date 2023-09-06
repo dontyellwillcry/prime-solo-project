@@ -26,7 +26,7 @@ function AdminEdit({id}) {
   const handleChange = (event) => {
     event.preventDefault(); 
     const { name, value } = event.target;
-    const newValue = name === "ingredient_ids" ? value.split(",").map(id => parseInt(id.trim())) : value;
+    const newValue = name === "ingredient_ids" ? value.split(",").map(id => parseInt(id.trim())) : value; // I have no idea how this works
 
     setFormData({
       ...formData,
@@ -41,6 +41,7 @@ function AdminEdit({id}) {
       payload: formData,
     };
     dispatch(action);
+    handleClose()
     console.log("Here is the action", action)
   };
 
