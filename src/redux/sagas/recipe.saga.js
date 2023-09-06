@@ -57,17 +57,18 @@ function* deleteRecipe(action) {
     yield axios.delete(`/api/recipe/${action.payload}`);
     yield put({ type: "FETCH_RECIPE" });
   } catch (error) {
-    console.log("error posting a basket", error);
+    console.log("error in Delete", error);
   }
 }
 
 
 function* updateRecipe(action) {
   try {
-    yield axios.put(`/api/recipe/${action.payload}`);
+    const updatedRecipeData = action.payload; 
+    yield axios.put(`/api/recipe/${updatedRecipeData.id}`, updatedRecipeData);
     yield put({ type: "FETCH_RECIPE" });
   } catch (error) {
-    console.log("error posting a basket", error);
+    console.log("error sending put", error);
   }
 }
 
@@ -76,7 +77,7 @@ function* recipeSaga() {
   yield takeLatest('FETCH_RECIPE', fetchRecipe);
   yield takeLatest('SAVE_RECIPE', sendRecipe);
   yield takeLatest('DELETE_RECIPE', deleteRecipe);
-  yield takeLatest('UPDATE_RECIPE', updateRecipe);
+  yield takeLatest('EDIT_RECIPE', updateRecipe);
 
 }
 

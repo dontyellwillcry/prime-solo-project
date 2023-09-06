@@ -114,7 +114,7 @@ function AdminForm() {
               </CardContent>
               <CardActions>
                 {/* <Button size="small">Edit</Button> */}
-                <AdminEdit/>
+                <AdminEdit id={recipe.id}/>
                 <Button size="small" onClick={deleteRecipe}>
                   Delete Recipe
                 </Button>

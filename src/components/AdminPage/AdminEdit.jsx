@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
-function AdminEdit() {
+function AdminEdit({id}) {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -19,23 +19,29 @@ function AdminEdit() {
     ingredient_ids: [],
     description: "",
     image: "",
+    id: id,
+    
   });
 
   const handleChange = (event) => {
-    event.preventDefault(); // is this needed??
+    event.preventDefault(); 
     const { name, value } = event.target;
+    const newValue = name === "ingredient_ids" ? value.split(",").map(id => parseInt(id.trim())) : value;
+
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: newValue,
     });
   };
 
-  const handleDispatch = () => {
+  const handleDispatch = (event) => {
+    event.preventDefault();
     const action = {
       type: "EDIT_RECIPE",
       payload: formData,
     };
     dispatch(action);
+    console.log("Here is the action", action)
   };
 
   const style = {
@@ -66,7 +72,7 @@ function AdminEdit() {
         
       >
         <Box sx={style} >
-          <h2>Create a New Recipe</h2>
+          <h2>Update Recipe</h2>
           <form onSubmit={handleDispatch}>
             <div>
               <label htmlFor="name">Name:</label>
