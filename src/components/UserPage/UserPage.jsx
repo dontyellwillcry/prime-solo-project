@@ -136,39 +136,51 @@ function UserPage() {
           style={{ marginBottom: "50px" }}
         />
       )}
-      {/* <ul>
-        {ingredientReducer.map((ingredient) => (
-          <li key={ingredient.id}>
-            <img src={ingredient.image} alt={ingredient.name} />
-            {ingredient.name} - Type: {ingredient.type}
-          </li>
-        ))}
-      </ul> */}
-      {/* <Box sx={{ flexGrow: 1 }}> */}
-      <Container maxWidth="lg">
-        <Grid
-          justifyContent="center"
-          container
-          spacing={5}
-          sx={{ flexGrow: 1 }}
-          columns={{ xs: 4 }}
-        >
+      <Container maxWidth="md">
+        {/* constainer spacing changes the inside margins of the grid? */}
+        <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
           {ingredientReducer.map((ingredient) => (
-            <Grid item xs={1} key={ingredient.id}>
-              {/* <Item>{ingredient.image}</Item> */}
-
-              <img
-                src={ingredient.image}
-                onClick={() => insertIngredient(ingredient)}
-              />
+            // item xs={3} changes how close the cards are together.
+            <Grid item xs={3} key={ingredient.id}>
+              <Card
+                sx={{
+                  width: 200, // Changes the width of my card
+                  height: 200, // Changes height.
+                  backgroundColor: "rgba(255, 255, 255, 0.1)", // Adjust the transparency here
+                  border: "2px solid #000", // Add a border
+                }}
+              >
+                <CardContent>
+                  <img
+                    src={ingredient.image}
+                    alt={ingredient.name}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    style={{ fontSize: "1rem" }}
+                  >
+                    {ingredient.name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Type: {ingredient.type}
+                  </Typography>
+                  <Button variant="outlined" style={{ fontSize: "0.8rem" }}>
+                    Add to Crockpot
+                  </Button>
+                </CardContent>
+              </Card>
             </Grid>
           ))}
         </Grid>
       </Container>
-      {/* </Box> */}
     </div>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default UserPage;
