@@ -21,20 +21,34 @@ function* fetchRecipe() {
 }
 
 
+// function* sendRecipe(action) {
+//   try {
+//     const config = {
+//       headers: { 'Content-Type': 'application/json' },
+//       withCredentials: true,
+//     };
+
+//     // Assuming 'action.payload' contains the form data
+//     const response = yield axios.post('/api/recipe', action.payload, config);
+
+//     yield put({ type: 'FETCH_RECIPE', payload: response.data });
+//   } catch (error) {
+//     console.log('SAVE_RECIPE', error);
+//     yield put({ type: 'RECIPE_SENT_FAILED', payload: error.message });
+//   }
+// }
 function* sendRecipe(action) {
   try {
     const config = {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-
-    // Assuming 'action.payload' contains the form data
-    const response = yield axios.post('/api/recipe', action.payload, config);
-
-    yield put({ type: 'RECIPE_SENT_SUCCESS', payload: response.data });
+    // Using 'yield' to wait for the POST request to complete
+    yield axios.post("/api/recipe", action.payload, config);
+    // Dispatching an action to fetch the latest elements list
+    yield put({ type: "FETCH_RECIPE" });
   } catch (error) {
-    console.log('RECIPE_SENT_FAILED', error);
-    yield put({ type: 'RECIPE_SENT_FAILED', payload: error.message });
+    console.log("error posting a recipe", error);
   }
 }
 

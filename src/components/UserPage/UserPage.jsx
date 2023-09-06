@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 // import LogOutButton from "../LogOutButton/LogOutButton";
-import "./UserPage.css";
+// import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ function UserPage() {
 
   return (
     // <div className="container">
-    <div>
+    <div className="background-user">
       <h2>Welcome, {user.username}!</h2>
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}

@@ -5,9 +5,10 @@ import './LoginPage.css';
 
 function LoginPage() {
   const history = useHistory();
+  
 
   return (
-    <div>
+    <div className="background-image">
       <LoginForm />
 
       <center>

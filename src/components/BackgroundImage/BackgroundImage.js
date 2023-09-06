@@ -15,7 +15,7 @@ const BackgroundImage = () => {
   const getBackgroundImage = () => {
     switch (location.pathname) {
       case '/about':
-        return 'url("/public/images/bg/5.jpg")';
+        return 'url("/images/bg/5.jpg")';
       case '/user':
         return 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")';
       case '/admin':
@@ -23,7 +23,7 @@ const BackgroundImage = () => {
       case '/info':
         return 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")';
       case '/login':
-        return 'url("/public/images/bg/5.jpg")';
+        return 'url("/images/bg/5.jpg")';
       case '/registration':
         return 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")';
       case '/home':
