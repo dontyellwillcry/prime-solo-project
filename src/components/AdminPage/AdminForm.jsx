@@ -1,7 +1,9 @@
+import { func } from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function AdminForm() {
+  const dispatch = useDispatch();
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const [formData, setFormData] = useState("");
 
@@ -32,7 +34,13 @@ function AdminForm() {
       console.log("No match");
     }
   }
-  console.log(recipe.id)
+
+  function deleteRecipe() {
+    dispatch({
+        type: "DELETE_RECIPE",
+        payload: recipe.id
+    })
+  }
   return (
     <>
       <h1> Admin page</h1>
@@ -61,7 +69,7 @@ function AdminForm() {
           <li>Ingredient IDs: {recipe.ingredient_ids.join(", ")}</li>
           <li>Description: {recipe.description}</li>
           <img src={recipe.image} alt="Recipe Image" />
-          <button>Delete Recipe</button>
+          <button onClick={deleteRecipe}>Delete Recipe</button>
           <button>Update Recipe</button>
         </ul>
       ) : (
