@@ -91,54 +91,50 @@ function UserPage() {
               onChange={(event) => setFormData(event.target.value)}
             />
           </Box>
-          <button type="submit" style={{ marginBottom: '50px' }}>SEARCH</button>
+          <button type="submit" style={{ marginBottom: "50px" }}>
+            SEARCH
+          </button>
         </div>
       </form>
       {recipe.name !== "" ? (
-        // <ul>
-        //   <li>Name: {recipe.name}</li>
-        //   <li>Health: {recipe.health}</li>
-        //   <li>Hunger: {recipe.hunger}</li>
-        //   <li>Sanity: {recipe.sanity}</li>
-        //   <li>Ingredient IDs: {recipe.ingredient_ids.join(", ")}</li>
-        //   <li>Description: {recipe.description}</li>
-        //   <img src={recipe.image} alt="Recipe Image" />
-        //   <button>Favorite</button>
-        // </ul>
         <Container maxWidth="sm">
           <Grid
-          justifyContent="center"
-          container
-          spacing={5}
-          sx={{ flexGrow: 1 }}
-          columns={{ xs: 4 }}
-          marginBottom={10}
-          marginTop={10}
-          marginLeft={-40}
-        >
-        <Card sx={{ maxWidth: 300 }} >
-          <CardMedia
-            sx={{ height: 190 }}
-            image={recipe.image}
-            title={recipe.name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            {recipe.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-            {recipe.description}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Favorite</Button>
-            {/* <Button size="small">Learn More</Button> */}
-          </CardActions>
-        </Card>
-        </Grid>
+            justifyContent="center"
+            container
+            spacing={5}
+            sx={{ flexGrow: 1 }}
+            columns={{ xs: 4 }}
+            marginBottom={10}
+            marginTop={10}
+            marginLeft={-40}
+          >
+            <Card sx={{ maxWidth: 300 }}>
+              <CardMedia
+                sx={{ height: 190 }}
+                image={recipe.image}
+                title={recipe.name}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {recipe.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {recipe.description}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small">Favorite</Button>
+                {/* <Button size="small">Learn More</Button> */}
+              </CardActions>
+            </Card>
+          </Grid>
         </Container>
       ) : (
-        <img src={"images/icons/crockpot.png"} alt="Recipe Placeholder" style={{ marginBottom: '50px' }}/>
+        <img
+          src={"images/icons/crockpot.png"}
+          alt="Recipe Placeholder"
+          style={{ marginBottom: "50px" }}
+        />
       )}
       {/* <ul>
         {ingredientReducer.map((ingredient) => (
@@ -160,6 +156,7 @@ function UserPage() {
           {ingredientReducer.map((ingredient) => (
             <Grid item xs={1} key={ingredient.id}>
               {/* <Item>{ingredient.image}</Item> */}
+
               <img
                 src={ingredient.image}
                 onClick={() => insertIngredient(ingredient)}

@@ -1,11 +1,31 @@
 import { func } from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Input from "@mui/material/Input";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import TextField from '@mui/material/TextField';
+import AdminEdit from "./AdminEdit";
+
 
 function AdminForm() {
   const dispatch = useDispatch();
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const [formData, setFormData] = useState("");
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_INGREDIENT" });
+    dispatch({ type: "FETCH_RECIPE" });
+  }, []);
 
   const [recipe, setRecipe] = useState({
     name: "",
@@ -37,13 +57,19 @@ function AdminForm() {
 
   function deleteRecipe() {
     dispatch({
-        type: "DELETE_RECIPE",
-        payload: recipe.id
-    })
+      type: "DELETE_RECIPE",
+      payload: recipe.id,
+    });
+    dispatch({ type: "FETCH_RECIPE" });
   }
+
+  const transparentCardStyle = {
+    // background: "transparent",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    // boxShadow:
+  };
   return (
     <>
-      <h1> Admin page</h1>
       <form onSubmit={searchRecipe}>
         <div>
           <label htmlFor="name">Name:</label>
@@ -61,19 +87,47 @@ function AdminForm() {
       {/*First i tried doing recipe ? but bacause the recipeReducer is holding all the recipes it 
       was not flagging as false. SOOOOO I tried recipe.name ?, bacause the recipe from useState is empty.  */}
       {recipe.name !== "" ? (
-        <ul key={recipe.id}>
-          <li>Name: {recipe.name}</li>
-          <li>Health: {recipe.health}</li>
-          <li>Hunger: {recipe.hunger}</li>
-          <li>Sanity: {recipe.sanity}</li>
-          <li>Ingredient IDs: {recipe.ingredient_ids.join(", ")}</li>
-          <li>Description: {recipe.description}</li>
-          <img src={recipe.image} alt="Recipe Image" />
-          <button onClick={deleteRecipe}>Delete Recipe</button>
-          <button>Update Recipe</button>
-        </ul>
+        <Container maxWidth="sm">
+          <Grid
+            justifyContent="center"
+            container
+            spacing={5}
+            sx={{ flexGrow: 1 }}
+            columns={{ xs: 4 }}
+            marginBottom={10}
+            marginTop={10}
+            marginLeft={-40}
+          >
+            <Card sx={{ maxWidth: 300 }} style={transparentCardStyle}>
+              <CardMedia
+                sx={{ height: 190 }}
+                image={recipe.image}
+                title={recipe.name}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {recipe.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {recipe.description}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                {/* <Button size="small">Edit</Button> */}
+                <AdminEdit/>
+                <Button size="small" onClick={deleteRecipe}>
+                  Delete Recipe
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        </Container>
       ) : (
-        <h2>Recipe info here.</h2>
+        <img
+          src={"images/icons/crockpot.png"}
+          alt="Recipe Placeholder"
+          style={{ marginBottom: "50px" }}
+        />
       )}
     </>
   );

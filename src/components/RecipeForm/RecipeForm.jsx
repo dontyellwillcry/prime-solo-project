@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Container from '@mui/material/Container';
+
 
 const RecipeForm = () => {
     const dispatch = useDispatch();
@@ -41,12 +45,22 @@ const RecipeForm = () => {
   };
 
   return (
+    
     <div>
+      <Container maxWidth="sm">
+      <Box
+    component="form"
+    sx={{
+      '& > :not(style)': { m: 1, width: '25ch' },
+    }}
+    noValidate
+    autoComplete="off"
+  >
       <h2>Create a New Recipe</h2>
       <form onSubmit={handleDispatch}>
         <div>
           <label htmlFor="name">Name:</label>
-          <input
+          <TextField label="Name" variant="filled"
             type="text"
             id="name"
             name="name"
@@ -56,7 +70,7 @@ const RecipeForm = () => {
         </div>
         <div>
           <label htmlFor="health">Health:</label>
-          <input
+          <TextField label="Health" variant="filled"
             type="number"
             id="health"
             name="health"
@@ -66,7 +80,7 @@ const RecipeForm = () => {
         </div>
         <div>
           <label htmlFor="hunger">Hunger:</label>
-          <input
+          <TextField label="Hunger" variant="filled"
             type="number"
             id="hunger"
             name="hunger"
@@ -76,7 +90,7 @@ const RecipeForm = () => {
         </div>
         <div>
           <label htmlFor="sanity">Sanity:</label>
-          <input
+          <TextField label="Sanity" variant="filled"
             type="number"
             id="sanity"
             name="sanity"
@@ -86,7 +100,7 @@ const RecipeForm = () => {
         </div>
         <div>
           <label htmlFor="ingredient_ids">Ingredient IDs (comma-separated):</label>
-          <input
+          <TextField label="Ingredient Id's" variant="filled"
             type="text"
             id="ingredient_ids"
             name="ingredient_ids"
@@ -96,7 +110,11 @@ const RecipeForm = () => {
         </div>
         <div>
           <label htmlFor="description">Description:</label>
-          <textarea
+          <TextField
+          label="Description"
+          // placeholder="Placeholder"
+          multiline
+          variant="standard"
             id="description"
             name="description"
             value={formData.description}
@@ -105,7 +123,7 @@ const RecipeForm = () => {
         </div>
         <div>
           <label htmlFor="image">Image URL:</label>
-          <input
+          <TextField label="Image" variant="filled"
             type="text"
             id="image"
             name="image"
@@ -115,6 +133,9 @@ const RecipeForm = () => {
         </div>
         <button type="submit">Save Recipe</button>
       </form>
+      
+      </Box>
+      </Container>
     </div>
   );
 };
