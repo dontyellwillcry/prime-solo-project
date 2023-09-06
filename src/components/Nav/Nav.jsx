@@ -28,12 +28,12 @@ function Nav() {
             <Link className="navLink" to="/user">
               Home
             </Link>
-
+          
             <Link className="navLink" to="/info">
               Info Page
             </Link>
 
-            <LogOutButton className="navLink" />
+            <LogOutButton className="navLink"/>
           </>
         )}
         {user.id && user.access_level === 10 &&(

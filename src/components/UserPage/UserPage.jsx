@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 // import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Input from "@mui/material/Input";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -18,18 +23,16 @@ function UserPage() {
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const [formData, setFormData] = useState("");
   const [recipe, setRecipe] = useState({
-    name: '',
+    name: "",
     health: 0,
     hunger: 0,
     sanity: 0,
     ingredient_ids: [],
-    description: '',
-    image: '',
+    description: "",
+    image: "",
   });
 
-
-
-  // Function to handle the search input from the user. The input will match against all items in the 
+  // Function to handle the search input from the user. The input will match against all items in the
   // reducer and return any matches.
   function searchRecipe(event) {
     event.preventDefault();
@@ -39,7 +42,7 @@ function UserPage() {
         foundRecipe = item; // Store the matched item in foundRecipe
       }
     });
-  
+
     if (foundRecipe) {
       // If a matching recipe was found, update the state
       setRecipe(foundRecipe);
@@ -47,6 +50,11 @@ function UserPage() {
     } else {
       console.log("No match");
     }
+  }
+  const ariaLabel = { "aria-label": "description" };
+
+  function insertIngredient(ingredient) {
+    console.log("Inside Ingredient", ingredient.id)
   }
 
   return (
@@ -57,26 +65,29 @@ function UserPage() {
       {/* <LogOutButton className="btn" /> */}
       <form onSubmit={searchRecipe}>
         <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            // value={formData.name}
-            onChange={(event) => setFormData(event.target.value)}
-          />
+          {/* <label htmlFor="name">Name:</label> */}
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1 },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <Input
+              placeholder="Search Recipe"
+              type="text"
+              id="name"
+              name="name"
+              inputProps={ariaLabel}
+              // value={formData.name}
+              onChange={(event) => setFormData(event.target.value)}
+            />
+          </Box>
           <button type="submit">SEARCH</button>
         </div>
       </form>
-      <ul>
-        {ingredientReducer.map((ingredient) => (
-          <li key={ingredient.id}>
-            <img src={ingredient.image} alt={ingredient.name} />
-            {ingredient.name} - Type: {ingredient.type}
-          </li>
-        ))}
-      </ul>
-      {recipe.name !== '' ? (
+      {recipe.name !== "" ? (
         <ul>
           <li>Name: {recipe.name}</li>
           <li>Health: {recipe.health}</li>
@@ -86,11 +97,30 @@ function UserPage() {
           <li>Description: {recipe.description}</li>
           <img src={recipe.image} alt="Recipe Image" />
           <button>Favorite</button>
-          
         </ul>
       ) : (
-        <h2>WHY AM I SO BAD AT COMPONENTS....recipe will show up here.</h2>
+        <h2>....recipe will show up here.</h2>
       )}
+      {/* <ul>
+        {ingredientReducer.map((ingredient) => (
+          <li key={ingredient.id}>
+            <img src={ingredient.image} alt={ingredient.name} />
+            {ingredient.name} - Type: {ingredient.type}
+          </li>
+        ))}
+      </ul> */}
+      {/* <Box sx={{ flexGrow: 1 }}> */}
+      <Container maxWidth="lg">
+        <Grid justifyContent="center" container spacing={5} sx={{ flexGrow: 1 }} columns={{ xs: 4}}>
+          {ingredientReducer.map((ingredient) => (
+            <Grid item xs={1} key={ingredient.id}>
+              {/* <Item>{ingredient.image}</Item> */}
+              <img src={ingredient.image} onClick={() => insertIngredient(ingredient )} />
+            </Grid>
+          ))}
+        </Grid>
+        </Container>
+      {/* </Box> */}
     </div>
   );
 }
