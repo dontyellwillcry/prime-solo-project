@@ -54,7 +54,7 @@ function UserForm() {
     console.log("Inside addFavorite", recipe.id);
     dispatch({
         type: "SAVE_FAVORITE",
-        payload: {id: recipe.id}
+        payload: {id: recipe.id} // Remember to put your payload in an object or your Saga/router will get mad
     })
   }
 

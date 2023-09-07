@@ -21,7 +21,7 @@ const BackgroundImage = () => {
       case '/admin':
         return 'url("https://cdn.steamstatic.com/steamcommunity/public/images/items/322330/86ad38fbb8b61da03913adf269def61231ff595b.jpg")';
       case '/info':
-        return 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")';
+        return 'url("https://cdn2.tfx.company/images/clickwallpapers-dont-starve-wallpaper-in-full-hd-img1.png")';
       case '/login':
         return 'url("/images/bg/5.jpg")';
       case '/registration':
