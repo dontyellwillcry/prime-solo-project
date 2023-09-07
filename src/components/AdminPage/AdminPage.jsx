@@ -1,7 +1,7 @@
-import RecipeForm from "../RecipeForm/RecipeForm";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AdminForm from "./AdminForm";
+import AdminRecipe from "./AdminRecipe";
 
 function AdminPage() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function AdminPage() {
   return (
     <>
     <h1> Admin page</h1>
-      <RecipeForm />
+      <AdminRecipe />
       <AdminForm />
     </>
   );
