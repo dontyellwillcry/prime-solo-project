@@ -49,7 +49,12 @@ const RecipeForm = () => {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
+            "& > :not(style)": {
+              m: 1,
+              width: "100%",
+              maxWidth: "300px",
+              ml: -30, // Adjust margin-left to move the inputs closer to the left side
+            },
           }}
           noValidate
           autoComplete="off"
@@ -58,7 +63,7 @@ const RecipeForm = () => {
           <h2>Create a New Recipe</h2>
 
           <div>
-            <label htmlFor="name">Name:</label>
+            {/* <label htmlFor="name">Name:</label> */}
             <TextField
               label="Name"
               variant="filled"
@@ -70,7 +75,7 @@ const RecipeForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="health">Health:</label>
+            {/* <label htmlFor="health">Health:</label> */}
             <TextField
               label="Health"
               variant="filled"
@@ -82,7 +87,7 @@ const RecipeForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="hunger">Hunger:</label>
+            {/* <label htmlFor="hunger">Hunger:</label> */}
             <TextField
               label="Hunger"
               variant="filled"
@@ -94,7 +99,7 @@ const RecipeForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="sanity">Sanity:</label>
+            {/* <label htmlFor="sanity">Sanity:</label> */}
             <TextField
               label="Sanity"
               variant="filled"
@@ -106,9 +111,9 @@ const RecipeForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="ingredient_ids">
+            {/* <label htmlFor="ingredient_ids">
               Ingredient IDs (comma-separated):
-            </label>
+            </label> */}
             <TextField
               label="Ingredient Id's"
               variant="filled"
@@ -120,12 +125,12 @@ const RecipeForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="description">Description:</label>
+            {/* <label htmlFor="description">Description:</label> */}
             <TextField
               label="Description"
               // placeholder="Placeholder"
               multiline
-              variant="standard"
+              variant="filled"
               id="description"
               name="description"
               value={formData.description}
@@ -133,9 +138,9 @@ const RecipeForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="image">Image URL:</label>
+            {/* <label htmlFor="image">Image URL:</label> */}
             <TextField
-              label="Image"
+              label="Image URL"
               variant="filled"
               type="text"
               id="image"

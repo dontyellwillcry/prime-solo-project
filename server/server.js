@@ -11,7 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const ingredientRouter = require('./routes/template.router');
 const recipeRouter = require('./routes/recipe.router');
-// const adminRouter = require('./routes/recipe.router');
+const favoriteRouter = require('./routes/favorites.router');
 
 
 
@@ -31,7 +31,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/ingredients', ingredientRouter);
 app.use('/api/recipe', recipeRouter);
-// app.use('/api/recipe', adminRouter);
+app.use('/api/favorites', favoriteRouter);
 
 
 

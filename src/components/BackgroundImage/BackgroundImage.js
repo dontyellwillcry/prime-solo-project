@@ -19,7 +19,7 @@ const BackgroundImage = () => {
       case '/user':
         return 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")';
       case '/admin':
-        return 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")';
+        return 'url("https://cdn.steamstatic.com/steamcommunity/public/images/items/322330/86ad38fbb8b61da03913adf269def61231ff595b.jpg")';
       case '/info':
         return 'url("https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg")';
       case '/login':
