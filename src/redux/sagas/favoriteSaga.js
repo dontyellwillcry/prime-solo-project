@@ -24,11 +24,9 @@ function* addFavorite(action) {
       withCredentials: true,
       
     };
-    console.log("Payload:", action.payload);
-    const payloadJSON = JSON.stringify(action.payload);
 
     // Using 'yield' to wait for the POST request to complete
-    yield axios.post("/api/favorites", payloadJSON, config);
+    yield axios.post("/api/favorites", action.payload, config);
     
     // Dispatching an action to fetch the latest elements list
     yield put({ type: "FETCH_FAVORITE" });
