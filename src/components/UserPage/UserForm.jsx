@@ -58,6 +58,10 @@ function UserForm() {
     })
   }
 
+  function addIngredient(id) {
+    console.log()
+  }
+
   const ariaLabel = { "aria-label": "description" };
 
   return (
@@ -178,7 +182,7 @@ function UserForm() {
                   >
                     Type: {ingredient.type}
                   </Typography>
-                  <Button variant="outlined" style={{ fontSize: "0.8rem" }}>
+                  <Button variant="outlined" style={{ fontSize: "0.8rem" }} onClick={() => addIngredient(ingredient.id)}>
                     Add to Crockpot
                   </Button>
                 </CardContent>
