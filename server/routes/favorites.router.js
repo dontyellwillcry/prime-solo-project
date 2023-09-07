@@ -20,7 +20,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   });
 
   
-  router.post("/:id", rejectUnauthenticated, (req, res) => {
+  router.post("/", rejectUnauthenticated, (req, res) => {
     // POST route code here
     console.log(req.body);
   

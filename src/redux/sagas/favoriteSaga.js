@@ -22,10 +22,14 @@ function* addFavorite(action) {
     const config = {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
-      responseType: 'json',
+      
     };
+    console.log("Payload:", action.payload);
+    const payloadJSON = JSON.stringify(action.payload);
+
     // Using 'yield' to wait for the POST request to complete
-    yield axios.post("/api/favorites", action.payload, config);
+    yield axios.post("/api/favorites", payloadJSON, config);
+    
     // Dispatching an action to fetch the latest elements list
     yield put({ type: "FETCH_FAVORITE" });
   } catch (error) {

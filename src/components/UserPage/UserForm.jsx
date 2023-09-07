@@ -54,7 +54,7 @@ function UserForm() {
     console.log("Inside addFavorite", recipe.id);
     dispatch({
         type: "SAVE_FAVORITE",
-        payload: recipe.id
+        payload: {id: recipe.id}
     })
   }
 
