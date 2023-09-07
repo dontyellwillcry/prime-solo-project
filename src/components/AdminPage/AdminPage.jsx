@@ -1,8 +1,9 @@
+import RecipeForm from "../RecipeForm/RecipeForm";
 import React, { useEffect, useState } from "react";
-import UserForm from "./UserForm";
 import { useDispatch, useSelector } from "react-redux";
+import AdminForm from "./AdminForm";
 
-function UserPage() {
+function AdminPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -11,13 +12,12 @@ function UserPage() {
   }, []);
 
   return (
-    // <div className="container">
-    <div className="background-user">
-      {/* <p>Your ID is: {user.id}</p> */}
-      {/* <LogOutButton className="btn" /> */}
-      <UserForm />
-    </div>
+    <>
+    <h1> Admin page</h1>
+      <RecipeForm />
+      <AdminForm />
+    </>
   );
 }
 
-export default UserPage;
+export default AdminPage;
