@@ -59,7 +59,7 @@ function UserForm() {
   }
 
   function addIngredient(id) {
-    console.log()
+    console.log(id)
   }
 
   const ariaLabel = { "aria-label": "description" };
