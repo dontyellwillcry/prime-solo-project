@@ -76,7 +76,7 @@ function AdminEdit({id}) {
           <h2>Update Recipe</h2>
           <form onSubmit={handleDispatch}>
             <div>
-              <label htmlFor="name">Name:</label>
+              {/* <label htmlFor="name">Name:</label> */}
               <TextField
                 label="Name"
                 variant="filled"
@@ -85,10 +85,11 @@ function AdminEdit({id}) {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                size="small"
               />
             </div>
             <div>
-              <label htmlFor="health">Health:</label>
+              {/* <label htmlFor="health">Health:</label> */}
               <TextField
                 label="Health"
                 variant="filled"
@@ -97,10 +98,11 @@ function AdminEdit({id}) {
                 name="health"
                 value={formData.health}
                 onChange={handleChange}
+                size="small"
               />
             </div>
             <div>
-              <label htmlFor="hunger">Hunger:</label>
+              {/* <label htmlFor="hunger">Hunger:</label> */}
               <TextField
                 label="Hunger"
                 variant="filled"
@@ -109,10 +111,11 @@ function AdminEdit({id}) {
                 name="hunger"
                 value={formData.hunger}
                 onChange={handleChange}
+                size="small"
               />
             </div>
             <div>
-              <label htmlFor="sanity">Sanity:</label>
+              {/* <label htmlFor="sanity">Sanity:</label> */}
               <TextField
                 label="Sanity"
                 variant="filled"
@@ -121,12 +124,13 @@ function AdminEdit({id}) {
                 name="sanity"
                 value={formData.sanity}
                 onChange={handleChange}
+                size="small"
               />
             </div>
             <div>
-              <label htmlFor="ingredient_ids">
+              {/* <label htmlFor="ingredient_ids">
                 Ingredient IDs (comma-separated):
-              </label>
+              </label> */}
               <TextField
                 label="Ingredient Id's"
                 variant="filled"
@@ -135,10 +139,11 @@ function AdminEdit({id}) {
                 name="ingredient_ids"
                 value={formData.ingredient_ids}
                 onChange={handleChange}
+                size="small"
               />
             </div>
             <div>
-              <label htmlFor="description">Description:</label>
+              {/* <label htmlFor="description">Description:</label> */}
               <TextField
                 label="Description"
                 // placeholder="Placeholder"
@@ -148,10 +153,11 @@ function AdminEdit({id}) {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
+                size="small"
               />
             </div>
             <div>
-              <label htmlFor="image">Image URL:</label>
+              {/* <label htmlFor="image">Image URL:</label> */}
               <TextField
                 label="Image"
                 variant="filled"
@@ -160,6 +166,7 @@ function AdminEdit({id}) {
                 name="image"
                 value={formData.image}
                 onChange={handleChange}
+                size="small"
               />
             </div>
             <button type="submit">Update Recipe</button>

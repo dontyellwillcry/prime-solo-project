@@ -53,7 +53,7 @@ const RecipeForm = () => {
               m: 1,
               width: "100%",
               maxWidth: "300px",
-              ml: -30, // Adjust margin-left to move the inputs closer to the left side
+              ml: -20, // Adjust margin-left to move the inputs closer to the left side
             },
           }}
           noValidate

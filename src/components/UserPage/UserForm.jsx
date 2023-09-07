@@ -62,33 +62,46 @@ function UserForm() {
 
   return (
     <>
-      <form onSubmit={searchRecipe}>
-        <h2>Welcome, {user.username}!</h2>
-        <div>
-          <Box
-            // marginBottom={10}
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1 },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <Input
-              placeholder="Search Recipe"
-              type="text"
-              id="name"
-              name="name"
-              inputProps={ariaLabel}
-              value={formData.name}
-              onChange={(event) => setFormData(event.target.value)}
-            />
-          </Box>
-          <button type="submit" style={{ marginBottom: "50px" }}>
-            SEARCH
-          </button>
-        </div>
-      </form>
+    <Container maxWidth="xs">
+    <Grid container spacing={1}> {/* Reduce the spacing to 1 */}
+      <Grid item xs={12}>
+        <form onSubmit={searchRecipe}>
+          <h2>Welcome, {user.username}!</h2>
+          
+          <div>
+            <Grid container spacing={1} alignItems="center"> {/* Reduce the spacing to 1 */}
+              <Grid item xs={8}>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1 },
+                    
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <Input
+                    placeholder="Search Recipe"
+                    type="text"
+                    id="name"
+                    name="name"
+                    inputProps={{ 'aria-label': ariaLabel }}
+                    value={formData.name}
+                    onChange={(event) => setFormData(event.target.value)}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={4}>
+                <Button type="submit" variant="contained" color="primary">
+                  SEARCH
+                </Button>
+              </Grid>
+            </Grid>
+          </div>
+        </form>
+      </Grid>
+    </Grid>
+    </Container>
       {recipe.name !== "" ? (
         <Container maxWidth="sm">
           <Grid
