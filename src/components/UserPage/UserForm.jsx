@@ -53,59 +53,62 @@ function UserForm() {
   function addFavorite() {
     console.log("Inside addFavorite", recipe.id);
     dispatch({
-        type: "SAVE_FAVORITE",
-        payload: {id: recipe.id} // Remember to put your payload in an object or your Saga/router will get mad
-    })
+      type: "SAVE_FAVORITE",
+      payload: { id: recipe.id }, // Remember to put your payload in an object or your Saga/router will get mad
+    });
   }
 
   function addIngredient(id) {
-    console.log(id)
+    console.log(id);
   }
 
   const ariaLabel = { "aria-label": "description" };
 
   return (
     <>
-    <Container maxWidth="xs">
-    <Grid container spacing={1}> {/* Reduce the spacing to 1 */}
-      <Grid item xs={12}>
-        <form onSubmit={searchRecipe}>
-          <h2>Welcome, {user.username}!</h2>
-          
-          <div>
-            <Grid container spacing={1} alignItems="center"> {/* Reduce the spacing to 1 */}
-              <Grid item xs={8}>
-                <Box
-                  component="form"
-                  sx={{
-                    "& > :not(style)": { m: 1 },
-                    
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <Input
-                    placeholder="Search Recipe"
-                    type="text"
-                    id="name"
-                    name="name"
-                    inputProps={{ 'aria-label': ariaLabel }}
-                    value={formData.name}
-                    onChange={(event) => setFormData(event.target.value)}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Button type="submit" variant="contained" color="primary">
-                  SEARCH
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </form>
-      </Grid>
-    </Grid>
-    </Container>
+      <Container maxWidth="xs">
+        <Grid container spacing={1}>
+          {" "}
+          {/* Reduce the spacing to 1 */}
+          <Grid item xs={12}>
+            <form onSubmit={searchRecipe}>
+              <h2>Welcome, {user.username}!</h2>
+
+              <div>
+                <Grid container spacing={1} alignItems="center">
+                  {" "}
+                  {/* Reduce the spacing to 1 */}
+                  <Grid item xs={8}>
+                    <Box
+                      component="form"
+                      sx={{
+                        "& > :not(style)": { m: 1 },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <Input
+                        placeholder="Search Recipe"
+                        type="text"
+                        id="name"
+                        name="name"
+                        inputProps={{ "aria-label": ariaLabel }}
+                        value={formData.name}
+                        onChange={(event) => setFormData(event.target.value)}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button type="submit" variant="contained" color="primary">
+                      SEARCH
+                    </Button>
+                  </Grid>
+                </Grid>
+              </div>
+            </form>
+          </Grid>
+        </Grid>
+      </Container>
       {recipe.name !== "" ? (
         <Container maxWidth="sm">
           <Grid
@@ -182,7 +185,11 @@ function UserForm() {
                   >
                     Type: {ingredient.type}
                   </Typography>
-                  <Button variant="outlined" style={{ fontSize: "0.8rem" }} onClick={() => addIngredient(ingredient.id)}>
+                  <Button
+                    variant="outlined"
+                    style={{ fontSize: "0.8rem" }}
+                    onClick={() => addIngredient(ingredient.id)}
+                  >
                     Add to Crockpot
                   </Button>
                 </CardContent>
