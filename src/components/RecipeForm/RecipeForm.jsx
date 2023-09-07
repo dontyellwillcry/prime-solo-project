@@ -35,12 +35,21 @@ const RecipeForm = () => {
 
   const handleDispatch = (event) => {
     event.preventDefault();
-    console.log("Inside SAVE RECIpe");
+    console.log("Inside SAVE RECIPE");
     const action = {
       type: "SAVE_RECIPE",
       payload: formData,
     };
     dispatch(action);
+    setFormData({
+      name: "",
+      health: 0,
+      hunger: 0,
+      sanity: 0,
+      ingredient_ids: "",
+      description: "",
+      image: "",
+    });
   };
 
   return (
@@ -53,7 +62,7 @@ const RecipeForm = () => {
               m: 1,
               width: "100%",
               maxWidth: "300px",
-              ml: -20, // Adjust margin-left to move the inputs closer to the left side
+              ml: -30, // Adjust margin-left to move the inputs closer to the left side
             },
           }}
           noValidate

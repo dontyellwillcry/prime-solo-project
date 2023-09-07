@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import LogOutButton from "../LogOutButton/LogOutButton";
-// import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { styled } from "@mui/material/styles";
@@ -39,6 +37,7 @@ function UserForm() {
       if (formData === item.name) {
         foundRecipe = item; // Store the matched item in foundRecipe
       }
+      
     });
 
     if (foundRecipe) {
@@ -48,6 +47,9 @@ function UserForm() {
     } else {
       console.log("No match");
     }
+    console.log(formData)
+    setFormData("");
+    console.log(formData)
   }
 
   function addFavorite() {
@@ -93,7 +95,7 @@ function UserForm() {
                         id="name"
                         name="name"
                         inputProps={{ "aria-label": ariaLabel }}
-                        value={formData.name}
+                        value={formData}// Changed this from formData.name to just formData so the input can be clears. Check this later if you get errors
                         onChange={(event) => setFormData(event.target.value)}
                       />
                     </Box>

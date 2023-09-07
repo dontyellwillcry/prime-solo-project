@@ -55,6 +55,7 @@ function AdminForm() {
     } else {
       console.log("No match");
     }
+    setFormData("")
   }
 
   function deleteRecipe() {
@@ -79,7 +80,7 @@ function AdminForm() {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={formData}
             onChange={(event) => setFormData(event.target.value)}
           />
           <button type="submit">SEARCH</button>
