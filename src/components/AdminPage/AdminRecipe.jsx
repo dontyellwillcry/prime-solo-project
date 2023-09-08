@@ -81,6 +81,8 @@ const AdminRecipe = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              InputProps={{ style: { color: 'white' } }}
+
             />
           </div>
           <div>

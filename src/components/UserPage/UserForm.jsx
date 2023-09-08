@@ -33,7 +33,7 @@ function UserForm() {
   function searchRecipe(event) {
     event.preventDefault();
     let foundRecipe = null; // Initialize a variable to store the found recipe
-    recipeReducer.forEach(function (item) {
+    recipeReducer.forEach(function (item) { // Anonymous function with the function keyword
       if (formData === item.name) {
         foundRecipe = item; // Store the matched item in foundRecipe
       }
