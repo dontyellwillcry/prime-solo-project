@@ -117,11 +117,12 @@ function AdminForm() {
             marginLeft={-40}
           >
              {isCardOpen &&(
-            <Card sx={{ maxWidth: 300 }} style={transparentCardStyle} onClick={handleCloseClick}>
+            <Card sx={{ maxWidth: 300 }} style={transparentCardStyle} >
               <CardMedia
                 sx={{ height: 190 }}
                 image={recipe.image}
                 title={recipe.name}
+                onClick={handleCloseClick}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
