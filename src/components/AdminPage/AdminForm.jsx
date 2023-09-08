@@ -51,6 +51,7 @@ function AdminForm() {
     if (foundRecipe) {
       // If a matching recipe was found, update the state
       setRecipe(foundRecipe);
+      setIsCardOpen(true);
       console.log("Match found:", foundRecipe);
     } else {
       console.log("No match");
@@ -65,6 +66,20 @@ function AdminForm() {
     });
     dispatch({ type: "FETCH_RECIPE" });
   }
+
+  const [isCardOpen, setIsCardOpen] = useState(true);
+  const handleCloseClick = () => {
+    setIsCardOpen(false);
+    setRecipe({
+      name: "",
+      health: 0,
+      hunger: 0,
+      sanity: 0,
+      ingredient_ids: [],
+      description: "",
+      image: "",
+    })
+  };  
 
   const transparentCardStyle = {
     // background: "transparent",
@@ -101,7 +116,8 @@ function AdminForm() {
             marginTop={10}
             marginLeft={-40}
           >
-            <Card sx={{ maxWidth: 300 }} style={transparentCardStyle}>
+             {isCardOpen &&(
+            <Card sx={{ maxWidth: 300 }} style={transparentCardStyle} onClick={handleCloseClick}>
               <CardMedia
                 sx={{ height: 190 }}
                 image={recipe.image}
@@ -123,6 +139,7 @@ function AdminForm() {
                 </Button>
               </CardActions>
             </Card>
+            )}
           </Grid>
         </Container>
       ) : (
