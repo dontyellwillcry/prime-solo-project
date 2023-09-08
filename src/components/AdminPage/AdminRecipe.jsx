@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
-import Button from '@mui/material/Button';
-
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 const AdminRecipe = () => {
   const dispatch = useDispatch();
@@ -71,98 +73,98 @@ const AdminRecipe = () => {
           autoComplete="off"
           onSubmit={handleDispatch}
         >
-          <h2>Create a New Recipe</h2>
+          <Grid container spacing={2}>
+            <Grid xs={8}>
+              <h2>Create a New Recipe</h2>
 
-          <div>
-            {/* <label htmlFor="name">Name:</label> */}
-            <TextField
-              label="Name"
-              variant="filled"
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              InputProps={{ style: { color: 'white' } }}
+              <TextField
+                label="Name"
+                variant="filled"
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                InputProps={{ style: { color: "white" } }}
+                sx={{ mb: 2 }}
+              />
 
-            />
-          </div>
-          <div>
-            {/* <label htmlFor="health">Health:</label> */}
-            <TextField
-              label="Health"
-              variant="filled"
-              type="number"
-              id="health"
-              name="health"
-              value={formData.health}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            {/* <label htmlFor="hunger">Hunger:</label> */}
-            <TextField
-              label="Hunger"
-              variant="filled"
-              type="number"
-              id="hunger"
-              name="hunger"
-              value={formData.hunger}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            {/* <label htmlFor="sanity">Sanity:</label> */}
-            <TextField
-              label="Sanity"
-              variant="filled"
-              type="number"
-              id="sanity"
-              name="sanity"
-              value={formData.sanity}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            {/* <label htmlFor="ingredient_ids">
-              Ingredient IDs (comma-separated):
-            </label> */}
-            <TextField
-              label="Ingredient Id's"
-              variant="filled"
-              type="text"
-              id="ingredient_ids"
-              name="ingredient_ids"
-              value={formData.ingredient_ids}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            {/* <label htmlFor="description">Description:</label> */}
-            <TextField
-              label="Description"
-              // placeholder="Placeholder"
-              multiline
-              variant="filled"
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            {/* <label htmlFor="image">Image URL:</label> */}
-            <TextField
-              label="Image URL"
-              variant="filled"
-              type="text"
-              id="image"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-            />
-          </div>
-          <Button variant="outlined" type="submit" style={{ color: 'yellow', borderColor: 'yellow' }}>Save Recipe</Button>
+              <TextField
+                label="Health"
+                variant="filled"
+                type="number"
+                id="health"
+                name="health"
+                value={formData.health}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+
+              <TextField
+                label="Hunger"
+                variant="filled"
+                type="number"
+                id="hunger"
+                name="hunger"
+                value={formData.hunger}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+
+              <TextField
+                label="Sanity"
+                variant="filled"
+                type="number"
+                id="sanity"
+                name="sanity"
+                value={formData.sanity}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+
+              <TextField
+                label="Ingredient Id's"
+                variant="filled"
+                type="text"
+                id="ingredient_ids"
+                name="ingredient_ids"
+                value={formData.ingredient_ids}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+
+              <TextField
+                label="Description"
+                multiline
+                variant="filled"
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+
+              <TextField
+                label="Image URL"
+                variant="filled"
+                type="text"
+                id="image"
+                name="image"
+                value={formData.image}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+            </Grid>
+            <Grid xs={8}>
+              <Button
+                variant="outlined"
+                type="submit"
+                style={{ color: "yellow", borderColor: "yellow" }}
+              >
+                Save Recipe
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
       </Container>
     </div>
