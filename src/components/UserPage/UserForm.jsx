@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import LogOutButton from "../LogOutButton/LogOutButton";
-// import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { styled } from "@mui/material/styles";
@@ -35,10 +33,11 @@ function UserForm() {
   function searchRecipe(event) {
     event.preventDefault();
     let foundRecipe = null; // Initialize a variable to store the found recipe
-    recipeReducer.forEach(function (item) {
+    recipeReducer.forEach(function (item) { // Anonymous function with the function keyword
       if (formData === item.name) {
         foundRecipe = item; // Store the matched item in foundRecipe
       }
+      
     });
 
     if (foundRecipe) {
@@ -48,64 +47,70 @@ function UserForm() {
     } else {
       console.log("No match");
     }
+    console.log(formData)
+    setFormData("");
+    console.log(formData)
   }
 
   function addFavorite() {
     console.log("Inside addFavorite", recipe.id);
     dispatch({
-        type: "SAVE_FAVORITE",
-        payload: {id: recipe.id} // Remember to put your payload in an object or your Saga/router will get mad
-    })
+      type: "SAVE_FAVORITE",
+      payload: { id: recipe.id }, // Remember to put your payload in an object or your Saga/router will get mad
+    });
   }
 
   function addIngredient(id) {
-    console.log()
+    console.log(id);
   }
 
   const ariaLabel = { "aria-label": "description" };
 
   return (
     <>
-    <Container maxWidth="xs">
-    <Grid container spacing={1}> {/* Reduce the spacing to 1 */}
-      <Grid item xs={12}>
-        <form onSubmit={searchRecipe}>
-          <h2>Welcome, {user.username}!</h2>
-          
-          <div>
-            <Grid container spacing={1} alignItems="center"> {/* Reduce the spacing to 1 */}
-              <Grid item xs={8}>
-                <Box
-                  component="form"
-                  sx={{
-                    "& > :not(style)": { m: 1 },
-                    
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <Input
-                    placeholder="Search Recipe"
-                    type="text"
-                    id="name"
-                    name="name"
-                    inputProps={{ 'aria-label': ariaLabel }}
-                    value={formData.name}
-                    onChange={(event) => setFormData(event.target.value)}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Button type="submit" variant="contained" color="primary">
-                  SEARCH
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </form>
-      </Grid>
-    </Grid>
-    </Container>
+      <Container maxWidth="xs">
+        <Grid container spacing={1}>
+          {" "}
+          {/* Reduce the spacing to 1 */}
+          <Grid item xs={12}>
+            <form onSubmit={searchRecipe}>
+              <h2>Welcome, {user.username}!</h2>
+
+              <div>
+                <Grid container spacing={1} alignItems="center">
+                  {" "}
+                  {/* Reduce the spacing to 1 */}
+                  <Grid item xs={8}>
+                    <Box
+                      component="form"
+                      sx={{
+                        "& > :not(style)": { m: 1 },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <Input
+                        placeholder="Search Recipe"
+                        type="text"
+                        id="name"
+                        name="name"
+                        inputProps={{ "aria-label": ariaLabel }}
+                        value={formData}// Changed this from formData.name to just formData so the input can be clears. Check this later if you get errors
+                        onChange={(event) => setFormData(event.target.value)}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button type="submit" variant="contained" color="primary">
+                      SEARCH
+                    </Button>
+                  </Grid>
+                </Grid>
+              </div>
+            </form>
+          </Grid>
+        </Grid>
+      </Container>
       {recipe.name !== "" ? (
         <Container maxWidth="sm">
           <Grid
@@ -182,7 +187,11 @@ function UserForm() {
                   >
                     Type: {ingredient.type}
                   </Typography>
-                  <Button variant="outlined" style={{ fontSize: "0.8rem" }} onClick={() => addIngredient(ingredient.id)}>
+                  <Button
+                    variant="outlined"
+                    style={{ fontSize: "0.8rem" }}
+                    onClick={() => addIngredient(ingredient.id)}
+                  >
                     Add to Crockpot
                   </Button>
                 </CardContent>

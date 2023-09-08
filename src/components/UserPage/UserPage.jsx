@@ -11,10 +11,7 @@ function UserPage() {
   }, []);
 
   return (
-    // <div className="container">
     <div className="background-user">
-      {/* <p>Your ID is: {user.id}</p> */}
-      {/* <LogOutButton className="btn" /> */}
       <UserForm />
     </div>
   );

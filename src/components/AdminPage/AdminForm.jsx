@@ -41,8 +41,8 @@ function AdminForm() {
 
   function searchRecipe(event) {
     event.preventDefault();
-    let foundRecipe = null; // Initialize a variable to store the found recipe
-    recipeReducer.forEach(function (item) {
+    let foundRecipe = null; // sets a variable to store the found recipe
+    recipeReducer.forEach((item) => { // Anonymous arrow funtion without "function" keyword
       if (formData === item.name) {
         foundRecipe = item; // Store the matched item in foundRecipe
       }
@@ -55,6 +55,7 @@ function AdminForm() {
     } else {
       console.log("No match");
     }
+    setFormData("")
   }
 
   function deleteRecipe() {
@@ -79,7 +80,7 @@ function AdminForm() {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={formData}
             onChange={(event) => setFormData(event.target.value)}
           />
           <button type="submit">SEARCH</button>
@@ -117,7 +118,7 @@ function AdminForm() {
               <CardActions>
                 {/* <Button size="small">Edit</Button> */}
                 <AdminEdit id={recipe.id}/>
-                <Button size="small" onClick={deleteRecipe}>
+                <Button size="small" onClick={deleteRecipe} style={{ color: 'yellow' }}>
                   Delete Recipe
                 </Button>
               </CardActions>

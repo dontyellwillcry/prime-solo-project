@@ -64,7 +64,7 @@ function AdminEdit({id}) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Edit</Button>
+      <Button onClick={handleOpen}style={{ color: 'yellow' }}>Edit</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -169,7 +169,7 @@ function AdminEdit({id}) {
                 size="small"
               />
             </div>
-            <button type="submit">Update Recipe</button>
+            <button type="submit" >Update Recipe</button>
           </form>
         </Box>
       </Modal>

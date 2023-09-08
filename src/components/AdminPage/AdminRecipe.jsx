@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
+import Button from '@mui/material/Button';
 
-const RecipeForm = () => {
+
+const AdminRecipe = () => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -35,12 +37,21 @@ const RecipeForm = () => {
 
   const handleDispatch = (event) => {
     event.preventDefault();
-    console.log("Inside SAVE RECIpe");
+    console.log("Inside SAVE RECIPE");
     const action = {
       type: "SAVE_RECIPE",
       payload: formData,
     };
     dispatch(action);
+    setFormData({
+      name: "",
+      health: 0,
+      hunger: 0,
+      sanity: 0,
+      ingredient_ids: "",
+      description: "",
+      image: "",
+    });
   };
 
   return (
@@ -53,7 +64,7 @@ const RecipeForm = () => {
               m: 1,
               width: "100%",
               maxWidth: "300px",
-              ml: -20, // Adjust margin-left to move the inputs closer to the left side
+              ml: -30, // Adjust margin-left to move the inputs closer to the left side
             },
           }}
           noValidate
@@ -72,6 +83,8 @@ const RecipeForm = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              InputProps={{ style: { color: 'white' } }}
+
             />
           </div>
           <div>
@@ -149,11 +162,11 @@ const RecipeForm = () => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit">Save Recipe</button>
+          <Button variant="outlined" type="submit" style={{ color: 'yellow', borderColor: 'yellow' }}>Save Recipe</Button>
         </Box>
       </Container>
     </div>
   );
 };
 
-export default RecipeForm;
+export default AdminRecipe;
