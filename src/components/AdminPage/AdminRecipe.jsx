@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
+import Button from '@mui/material/Button';
+
 
 const AdminRecipe = () => {
   const dispatch = useDispatch();
@@ -160,7 +162,7 @@ const AdminRecipe = () => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit">Save Recipe</button>
+          <Button variant="outlined" type="submit" style={{ color: 'yellow', borderColor: 'yellow' }}>Save Recipe</Button>
         </Box>
       </Container>
     </div>
