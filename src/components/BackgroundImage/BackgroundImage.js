@@ -21,7 +21,7 @@ const BackgroundImage = () => {
       case '/admin':
         return 'url("https://w.wallha.com/ws/4/zMFPhtbN.png")';
       case '/info':
-        return 'url("https://cdn2.tfx.company/images/clickwallpapers-dont-starve-wallpaper-in-full-hd-img1.png")';
+        return 'url("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/322330/3a199d0d5519403084592633e3d47a81afaae9e3.jpg")';
       case '/login':
         return 'url("/images/bg/5.jpg")';
       case '/registration':

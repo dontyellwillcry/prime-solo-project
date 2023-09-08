@@ -29,6 +29,7 @@ function UserForm() {
     description: "",
     image: "",
   });
+  
 
   function searchRecipe(event) {
     event.preventDefault();
@@ -43,13 +44,13 @@ function UserForm() {
     if (foundRecipe) {
       // If a matching recipe was found, update the state
       setRecipe(foundRecipe);
+      setIsCardOpen(true);
       console.log("Match found:", foundRecipe);
     } else {
       console.log("No match");
     }
-    console.log(formData)
     setFormData("");
-    console.log(formData)
+   
   }
 
   function addFavorite() {
@@ -63,6 +64,20 @@ function UserForm() {
   function addIngredient(id) {
     console.log(id);
   }
+  
+  const [isCardOpen, setIsCardOpen] = useState(true);
+  const handleCloseClick = () => {
+    setIsCardOpen(false);
+    setRecipe({
+      name: "",
+      health: 0,
+      hunger: 0,
+      sanity: 0,
+      ingredient_ids: [],
+      description: "",
+      image: "",
+    })
+  };  
 
   const ariaLabel = { "aria-label": "description" };
 
@@ -123,7 +138,8 @@ function UserForm() {
             marginTop={10}
             marginLeft={-40}
           >
-            <Card sx={{ maxWidth: 300 }}>
+            {isCardOpen &&(
+            <Card sx={{ maxWidth: 300, }} onClick={handleCloseClick}>
               <CardMedia
                 sx={{ height: 190 }}
                 image={recipe.image}
@@ -144,6 +160,7 @@ function UserForm() {
                 {/* <Button size="small">Learn More</Button> */}
               </CardActions>
             </Card>
+            )}
           </Grid>
         </Container>
       ) : (
