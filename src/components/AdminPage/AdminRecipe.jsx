@@ -70,7 +70,7 @@ const AdminRecipe = () => {
             },
           }}
           noValidate
-          autoComplete="off"
+          autoComplete="on"
           onSubmit={handleDispatch}
         >
           <Grid container spacing={2}>

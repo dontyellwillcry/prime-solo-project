@@ -13,6 +13,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+
+
 
 function UserForm() {
   const dispatch = useDispatch();
@@ -88,40 +91,42 @@ function UserForm() {
           {" "}
           {/* Reduce the spacing to 1 */}
           <Grid item xs={12}>
-            <form onSubmit={searchRecipe}>
             <h2>Welcome, {user.username}!</h2>
+            <form onSubmit={searchRecipe}>
+              <div>
+                <Grid container spacing={1} alignItems="center">
+                  {" "}
+                  {/* Reduce the spacing to 1 */}
+                  <Grid item xs={8}>
+                    <Box
+                      // component="form"
+                      sx={{
+                        "& > :not(style)": { m: 1 },
+                      }}
+                      noValidate
+                      autoComplete="on"
+                      // onSubmit={searchRecipe}
 
-            <div>
-              <Grid container spacing={1} alignItems="center">
-                {" "}
-                {/* Reduce the spacing to 1 */}
-                <Grid item xs={8}>
-                  <Box
-                    component="form"
-                    sx={{
-                      "& > :not(style)": { m: 1 },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                  >
-                    <Input
-                      placeholder="Search Recipe"
-                      type="text"
-                      id="name"
-                      name="name"
-                      inputProps={{ "aria-label": ariaLabel }}
-                      value={formData} // Changed this from formData.name to just formData so the input can be cleared. Check this later if you get errors
-                      onChange={(event) => setFormData(event.target.value)}
-                    />
-                  </Box>
+                    >
+                      <TextField
+                        placeholder="Search Recipe"
+                        type="text"
+                        id="name"
+                        name="name"
+                        variant="standard"
+                        inputProps={{ "aria-label": ariaLabel }}
+                        value={formData} // Changed this from formData.name to just formData so the input can be cleared. Check this later if you get errors
+                        onChange={(event) => setFormData(event.target.value)}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button type="submit" variant="contained" color="primary">
+                      SEARCH
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                  <Button type="submit" variant="contained" color="primary">
-                    SEARCH
-                  </Button>
-                </Grid>
-              </Grid>
-            </div>
+              </div>
             </form>
           </Grid>
         </Grid>
@@ -166,9 +171,10 @@ function UserForm() {
         </Container>
       ) : (
         <img
-          src={"images/icons/crockpot.png"}
+          src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
           alt="Recipe Placeholder"
-          style={{ marginBottom: "50px" }}
+          style={{ width: '100px', height: 'auto', marginBottom: '50px', marginTop: '50px' }}
+          
         />
       )}
       <Container maxWidth="md">

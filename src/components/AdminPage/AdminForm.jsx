@@ -120,7 +120,8 @@ function AdminForm() {
             <Card sx={{ maxWidth: 300 }} style={transparentCardStyle} >
               <CardMedia
                 sx={{ height: 190 }}
-                image={recipe.image}
+                image={recipe.recipe_image
+                }
                 title={recipe.name}
                 onClick={handleCloseClick}
               />
