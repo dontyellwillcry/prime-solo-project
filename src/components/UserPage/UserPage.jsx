@@ -8,6 +8,7 @@ function UserPage() {
   useEffect(() => {
     dispatch({ type: "FETCH_INGREDIENT" });
     dispatch({ type: "FETCH_RECIPE" });
+    dispatch({type: "FETCH_FAVORITE"})
   }, []);
 
   return (

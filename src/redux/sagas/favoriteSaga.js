@@ -2,15 +2,14 @@ import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
 
 function* fetchFavorite() {
-  console.log("inside of recipe SAGA");
+  console.log("inside of favorite SAGA");
   try {
     const config = {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-
     const response = yield axios.get("/api/favorites", config);
-
+    console.log("inside favorite response", response)
     yield put({ type: "COLLECT_FAVORITE", payload: response.data });
   } catch (error) {
     console.log("COLLECT_RECIPE get request failed", error);
@@ -38,7 +37,7 @@ function* addFavorite(action) {
 function* deleteFavorite(action) {
   try {
     yield axios.delete(`/api/favorites/${action.payload}`);
-    yield put({ type: "FETCH_FAVORITE" });
+    yield put({ type: "COLLECT_FAVORITE" });
   } catch (error) {
     console.log("error in Delete", error);
   }     

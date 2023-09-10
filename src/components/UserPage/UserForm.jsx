@@ -18,6 +18,7 @@ function UserForm() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const recipeReducer = useSelector((store) => store.recipeReducer);
+  const favoriteReducer = useSelector((store) => store.favoriteReducer);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
   const [formData, setFormData] = useState("");
   const [recipe, setRecipe] = useState({
@@ -29,16 +30,16 @@ function UserForm() {
     description: "",
     image: "",
   });
-  
+  // console.log(favoriteReducer)
 
   function searchRecipe(event) {
     event.preventDefault();
     let foundRecipe = null; // Initialize a variable to store the found recipe
-    recipeReducer.forEach(function (item) { // Anonymous function with the function keyword
+    recipeReducer.forEach(function (item) {
+      // Anonymous function with the function keyword
       if (formData === item.name) {
         foundRecipe = item; // Store the matched item in foundRecipe
       }
-      
     });
 
     if (foundRecipe) {
@@ -50,21 +51,20 @@ function UserForm() {
       console.log("No match");
     }
     setFormData("");
-   
   }
 
   function addFavorite() {
-    console.log("Inside addFavorite", recipe.id);
+    console.log("Inside addFavorite", recipe.recipe_id);
     dispatch({
       type: "SAVE_FAVORITE",
-      payload: { id: recipe.id }, // Remember to put your payload in an object or your Saga/router will get mad
+      payload: { id: recipe.recipe_id }, // Remember to put your payload in an object or your Saga/router will get mad
     });
   }
 
   function addIngredient(id) {
     console.log(id);
   }
-  
+
   const [isCardOpen, setIsCardOpen] = useState(true);
   const handleCloseClick = () => {
     setIsCardOpen(false);
@@ -76,8 +76,8 @@ function UserForm() {
       ingredient_ids: [],
       description: "",
       image: "",
-    })
-  };  
+    });
+  };
 
   const ariaLabel = { "aria-label": "description" };
 
@@ -89,39 +89,39 @@ function UserForm() {
           {/* Reduce the spacing to 1 */}
           <Grid item xs={12}>
             <form onSubmit={searchRecipe}>
-              <h2>Welcome, {user.username}!</h2>
+            <h2>Welcome, {user.username}!</h2>
 
-              <div>
-                <Grid container spacing={1} alignItems="center">
-                  {" "}
-                  {/* Reduce the spacing to 1 */}
-                  <Grid item xs={8}>
-                    <Box
-                      component="form"
-                      sx={{
-                        "& > :not(style)": { m: 1 },
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <Input
-                        placeholder="Search Recipe"
-                        type="text"
-                        id="name"
-                        name="name"
-                        inputProps={{ "aria-label": ariaLabel }}
-                        value={formData}// Changed this from formData.name to just formData so the input can be clears. Check this later if you get errors
-                        onChange={(event) => setFormData(event.target.value)}
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <Button type="submit" variant="contained" color="primary">
-                      SEARCH
-                    </Button>
-                  </Grid>
+            <div>
+              <Grid container spacing={1} alignItems="center">
+                {" "}
+                {/* Reduce the spacing to 1 */}
+                <Grid item xs={8}>
+                  <Box
+                    component="form"
+                    sx={{
+                      "& > :not(style)": { m: 1 },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <Input
+                      placeholder="Search Recipe"
+                      type="text"
+                      id="name"
+                      name="name"
+                      inputProps={{ "aria-label": ariaLabel }}
+                      value={formData} // Changed this from formData.name to just formData so the input can be cleared. Check this later if you get errors
+                      onChange={(event) => setFormData(event.target.value)}
+                    />
+                  </Box>
                 </Grid>
-              </div>
+                <Grid item xs={4}>
+                  <Button type="submit" variant="contained" color="primary">
+                    SEARCH
+                  </Button>
+                </Grid>
+              </Grid>
+            </div>
             </form>
           </Grid>
         </Grid>
@@ -138,28 +138,29 @@ function UserForm() {
             marginTop={10}
             marginLeft={-40}
           >
-            {isCardOpen &&(
-            <Card sx={{ maxWidth: 300, }} onClick={handleCloseClick}>
-              <CardMedia
-                sx={{ height: 190 }}
-                image={recipe.image}
-                title={recipe.name}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {recipe.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {recipe.description}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" onClick={addFavorite}>
-                  Favorite
-                </Button>
-                {/* <Button size="small">Learn More</Button> */}
-              </CardActions>
-            </Card>
+            {isCardOpen && (
+              <Card sx={{ maxWidth: 300 }} onClick={handleCloseClick}>
+                <CardMedia
+                  sx={{ height: 190 }}
+                  image={recipe.recipe_image}
+                  title={recipe.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {recipe.name}
+                  </Typography>
+                  <img src={recipe.ingredient_images[0]} />
+                  <img src={recipe.ingredient_images[1]} />
+                  <Typography variant="body2" color="text.secondary">
+                    {recipe.description}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small" onClick={addFavorite}>
+                    Favorite
+                  </Button>
+                </CardActions>
+              </Card>
             )}
           </Grid>
         </Container>
@@ -171,7 +172,6 @@ function UserForm() {
         />
       )}
       <Container maxWidth="md">
-        {/* constainer spacing changes the inside margins of the grid? */}
         <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
           {ingredientReducer.map((ingredient) => (
             // item xs={3} changes how close the cards are together.
