@@ -21,7 +21,14 @@ import TextField from "@mui/material/TextField";
 // or even care what the redux state is
 
 function InfoPage() {
+  const dispatch = useDispatch();
   const favoriteReducer = useSelector((store) => store.favoriteReducer);
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_INGREDIENT" });
+    dispatch({ type: "FETCH_RECIPE" });
+    dispatch({type: "FETCH_FAVORITE"})
+  }, []);
 
   function addFavorite() {
     console.log(favoriteReducer)
@@ -29,7 +36,7 @@ function InfoPage() {
 
   return (
     <div className="container">
-      <p>Flavorpits</p>
+      <Typography marginBottom={5}>Flavorpits</Typography>
       <Container maxWidth="md">
         <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
           {favoriteReducer.map((favorite) => (
@@ -38,7 +45,7 @@ function InfoPage() {
               <Card
                 sx={{
                   width: 200, // Changes the width of my card
-                  height: 200, // Changes height.
+                  height: 215, // Changes height.
                   // backgroundColor: "rgba(255, 255, 255, 0.1)", 
                   backgroundColor: "orange", 
                   border: "2px solid #000", // Add a border
@@ -62,7 +69,21 @@ function InfoPage() {
                     color="text.secondary"
                     style={{ fontSize: "0.8rem" }}
                   >
-                    Type: {favorite.type}
+                    Health: {favorite.health}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Hunger: {favorite.hunger}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Sanity: {favorite.sanity}
                   </Typography>
                   <Button
                     variant="outlined"
