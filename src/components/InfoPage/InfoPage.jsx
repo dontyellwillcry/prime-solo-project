@@ -39,7 +39,8 @@ function InfoPage() {
                 sx={{
                   width: 200, // Changes the width of my card
                   height: 200, // Changes height.
-                  backgroundColor: "rgba(255, 255, 255, 0.1)", // Adjust the transparency here
+                  // backgroundColor: "rgba(255, 255, 255, 0.1)", 
+                  backgroundColor: "orange", 
                   border: "2px solid #000", // Add a border
                 }}
               >
@@ -68,7 +69,7 @@ function InfoPage() {
                     style={{ fontSize: "0.8rem" }}
                     onClick={() => addFavorite(favorite.id)}
                   >
-                    Ramove
+                    Remove
                   </Button>
                 </CardContent>
               </Card>
