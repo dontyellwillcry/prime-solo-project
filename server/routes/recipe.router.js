@@ -3,7 +3,21 @@ const pool = require("../modules/pool");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  const query = `SELECT * FROM recipe ORDER BY "name" ASC`;
+  const query = `SELECT
+  r.id AS recipe_id,
+  r.name AS name,
+  r.health,
+  r.hunger,
+  r.sanity,
+  ARRAY(
+      SELECT i.image
+      FROM ingredients i
+      WHERE i.id = ANY(r.ingredient_ids)
+  ) AS ingredient_images,
+  r.description,
+  r.image AS recipe_image
+FROM
+  recipe r;`;
   pool
     .query(query)
     .then((result) => {
@@ -42,17 +56,40 @@ router.post("/", (req, res) => {
     });
 });
 
+// router.delete("/:id", (req, res) => {
+//   pool
+//     .query("DELETE FROM recipe WHERE id=$1", [req.params.id])
+//     .then((result) => {
+//       res.sendStatus(200);
+//     })
+//     .catch((error) => {
+//       console.log("Error DELETE /api/recipe", error);
+//       res.sendStatus(500);
+//     });
+// });
 router.delete("/:id", (req, res) => {
+  const recipeId = req.params.id;
+
+  const deleteQuery1 = "DELETE FROM recipe WHERE recipe_id=$1";
+  const deleteQuery2 = "DELETE FROM favorites WHERE recipe_id=$1";
+
+  // Execute the first DELETE query
   pool
-    .query("DELETE FROM recipe WHERE id=$1", [req.params.id])
-    .then((result) => {
-      res.sendStatus(200);
+    .query(deleteQuery1, [recipeId])
+    .then(() => {
+      // Execute the second DELETE query
+      return pool.query(deleteQuery2, [recipeId]);
+    })
+    .then(() => {
+      // Both DELETE operations were successful
+      res.status(200).json({ message: "Recipe and related data deleted" });
     })
     .catch((error) => {
       console.log("Error DELETE /api/recipe", error);
       res.sendStatus(500);
     });
 });
+
 
 router.put("/:id", (req, res) => {
   const updatedRecipe = req.body;

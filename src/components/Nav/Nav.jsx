@@ -1,9 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
-import { useSelector } from 'react-redux';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import "./Nav.css";
+import { useSelector } from "react-redux";
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -28,17 +27,22 @@ function Nav() {
             <Link className="navLink" to="/user">
               Home
             </Link>
-          
+
             <Link className="navLink" to="/info">
-              Info Page
+              Favorites
             </Link>
 
-            <LogOutButton className="navLink"/>
+            <LogOutButton className="navLink" />
           </>
         )}
-        {user.id && user.access_level === 10 &&(
+        {/* Change the admin access code to if user.id ? if access.leve else redirect. */}
+        {user.id && user.access_level === 10 ? (
           <Link className="navLink" to="/admin">
             Admin Page
+          </Link>
+        ) : (
+          <Link className="navLink" to="/user">
+            Home
           </Link>
         )}
 

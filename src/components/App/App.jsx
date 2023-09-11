@@ -5,10 +5,10 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import { useDispatch, useSelector } from "react-redux";
 import AdminPage from "../AdminPage/AdminPage";
 import Nav from "../Nav/Nav";
@@ -64,8 +64,7 @@ function App() {
           </ProtectedRoute>
           {/* Admin page. protected. */}
           <ProtectedRoute exact path="/admin">
-            {/* {user.access_level === 10} */}
-            <AdminPage />
+            {user.access_level !== 10 ? <Redirect to="/user" /> : <AdminPage />}
           </ProtectedRoute>
 
           <ProtectedRoute
