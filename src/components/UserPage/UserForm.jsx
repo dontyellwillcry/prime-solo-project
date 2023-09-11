@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CookpotOpen from "../SoundFiles/CookpotOpen";
-import { useHistory } from "react-router-dom";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Input from "@mui/material/Input";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
@@ -16,13 +12,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
-
-
 function UserForm() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const recipeReducer = useSelector((store) => store.recipeReducer);
-  const favoriteReducer = useSelector((store) => store.favoriteReducer);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
   const [formData, setFormData] = useState("");
   const [recipe, setRecipe] = useState({
@@ -66,7 +59,7 @@ function UserForm() {
   }
 
   function addIngredient(id) {
-    CookpotOpen()
+    CookpotOpen();
     console.log(id);
   }
 
@@ -83,8 +76,6 @@ function UserForm() {
       image: "",
     });
   };
-
-  
 
   const ariaLabel = { "aria-label": "description" };
 
@@ -110,7 +101,6 @@ function UserForm() {
                       noValidate
                       autoComplete="on"
                       // onSubmit={searchRecipe}
-
                     >
                       <TextField
                         placeholder="Search Recipe"
@@ -177,8 +167,12 @@ function UserForm() {
         <img
           src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
           alt="Recipe Placeholder"
-          style={{ width: '100px', height: 'auto', marginBottom: '50px', marginTop: '50px' }}
-          
+          style={{
+            width: "100px",
+            height: "auto",
+            marginBottom: "50px",
+            marginTop: "50px",
+          }}
         />
       )}
       <Container maxWidth="md">
