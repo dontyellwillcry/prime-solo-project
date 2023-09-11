@@ -17,6 +17,7 @@ function UserForm() {
   const user = useSelector((store) => store.user);
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
+  const clickedIngredient = useSelector((store) => store.clickedIngredient);
   const [formData, setFormData] = useState("");
   const [recipe, setRecipe] = useState({
     name: "",
@@ -58,10 +59,19 @@ function UserForm() {
     });
   }
 
-  function addIngredient(id) {
+  function addIngredient(ingredient) {
     CookpotOpen();
-    console.log(id);
+    dispatch({
+      type: "CLICK_INGREDIENT",
+      payload: {id: ingredient.id,
+                imgage: ingredient.image}
+    })
+    console.log(ingredient);
+    
   }
+  console.log(clickedIngredient)
+  // console.log('inside ingredientData', ingredientData)
+
 
   const [isCardOpen, setIsCardOpen] = useState(true);
   const handleCloseClick = () => {
@@ -211,7 +221,9 @@ function UserForm() {
                   <Button
                     variant="outlined"
                     style={{ fontSize: "0.8rem" }}
-                    onClick={() => addIngredient(ingredient.id)}
+                    onClick={() => addIngredient(ingredient)}
+                    // onClick={() => setingredientData(ingredient.id, ingredient.image)}
+
                   >
                     Add to Crockpot
                   </Button>
