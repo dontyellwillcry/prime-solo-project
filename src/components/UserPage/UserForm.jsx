@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import CookpotOpen from "../SoundFiles/CookpotOpen";
 import { useHistory } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -65,6 +66,7 @@ function UserForm() {
   }
 
   function addIngredient(id) {
+    CookpotOpen()
     console.log(id);
   }
 
@@ -81,6 +83,8 @@ function UserForm() {
       image: "",
     });
   };
+
+  
 
   const ariaLabel = { "aria-label": "description" };
 
