@@ -11,6 +11,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import MatchingRecipe from "./MatchingRecipe";
 
 function UserForm() {
   const dispatch = useDispatch();
@@ -72,64 +73,7 @@ function UserForm() {
     // recipeReducer.map((arr) => )
 
     console.log("recipeReducer id's", recipeReducer[0].ingredient_ids);
-    
   }
-
-
-// function findMatchingRecipes(ingredients, recipes) {
-//   const matchingRecipes = [];
-
-//   recipes.forEach(recipe => {
-//     const ingredientIds = recipe.ingredient_ids;
-//     const matchingIngredients = ingredients.filter(ingredient =>
-//       ingredientIds.includes(ingredient.id)
-//     );
-
-//     if (matchingIngredients.length === ingredientIds.length) {
-//       matchingRecipes.push(recipe);
-//     }
-//   });
-
-//   return matchingRecipes;
-// }
-
-// // Find recipes that match ingredient_ids
-// useEffect(() => {
-//   const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer);
-//   setTesting(matchingRecipes);
-// }, [clickedIngredient, recipeReducer]);
-
-// console.log(testing)
-function findMatchingRecipes(ingredients, recipes) {
-  const matchingRecipes = [];
-
-  recipes.forEach(recipe => {
-    const ingredientIds = recipe.ingredient_ids;
-    const matchingIngredients = ingredients.filter(ingredient =>
-      ingredientIds.includes(ingredient.id)
-    );
-
-    if (matchingIngredients.length === ingredientIds.length) {
-      matchingRecipes.push(recipe);
-    }
-  });
-
-  return matchingRecipes;
-}
-
-// Find matching recipes when ingredients or recipeReducer change
-const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer);
-console.log(matchingRecipes)
-
-
-
-
-  console.log(
-    "clickedingredient",
-    clickedIngredient.sort((a, b) => a.id - b.id)
-  );
-
-  function displayRecipe() {}
 
   const buttonStyle = {
     backgroundColor: "black",
@@ -154,12 +98,7 @@ console.log(matchingRecipes)
 
   return (
     <>
-    <h1>Matching Recipes</h1>
-      <ul>
-        {matchingRecipes.map(recipe => (
-          <li key={recipe.recipe_id}>{recipe.name}</li>
-        ))}
-      </ul>
+      <MatchingRecipe />
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
