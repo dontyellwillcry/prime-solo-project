@@ -30,8 +30,12 @@ function InfoPage() {
     dispatch({type: "FETCH_FAVORITE"})
   }, []);
 
-  function addFavorite() {
-    console.log(favoriteReducer)
+  function removeFavorite(id) {
+    dispatch({
+      type: "DELETE_FAVORITE",
+      payload: id
+    })
+    console.log(id)
   }
 
   return (
@@ -88,7 +92,7 @@ function InfoPage() {
                   <Button
                     variant="outlined"
                     style={{ fontSize: "0.8rem" }}
-                    onClick={() => addFavorite(favorite.id)}
+                    onClick={() => removeFavorite(favorite.id)}
                   >
                     Remove
                   </Button>

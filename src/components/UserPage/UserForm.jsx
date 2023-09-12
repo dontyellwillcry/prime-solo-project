@@ -161,7 +161,7 @@ function UserForm() {
             marginLeft={-40}
           >
             {isCardOpen && (
-              <Card sx={{ maxWidth: 300 }} onClick={handleCloseClick}>
+              <Card sx={{ maxWidth: 300, backgroundColor: "rgba(255, 255, 255, 0.1)" }} onClick={handleCloseClick}>
                 <CardMedia
                   sx={{ height: 190 }}
                   image={recipe.recipe_image}
@@ -173,6 +173,8 @@ function UserForm() {
                   </Typography>
                   <img src={recipe.ingredient_images[0]} />
                   <img src={recipe.ingredient_images[1]} />
+                  <img src={recipe.ingredient_images[2]} />
+                  <img src={recipe.ingredient_images[3]} />
                   <Typography variant="body2" color="text.secondary">
                     {recipe.description}
                   </Typography>
@@ -187,16 +189,17 @@ function UserForm() {
           </Grid>
         </Container>
       ) : (
-        <img
-          src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
-          alt="Recipe Placeholder"
-          style={{
-            width: "100px",
-            height: "auto",
-            marginBottom: "50px",
-            marginTop: "50px",
-          }}
-        />
+        // <img
+        //   src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
+        //   alt="Recipe Placeholder"
+        //   style={{
+        //     width: "100px",
+        //     height: "auto",
+        //     marginBottom: "50px",
+        //     marginTop: "50px",
+        //   }}
+        // />
+        <p></p>
       )}
       <Container maxWidth="md">
         <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>

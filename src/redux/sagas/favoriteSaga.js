@@ -36,8 +36,13 @@ function* addFavorite(action) {
 
 function* deleteFavorite(action) {
   try {
-    yield axios.delete(`/api/favorites/${action.payload}`);
-    yield put({ type: "COLLECT_FAVORITE" });
+    const config = {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+      
+    };
+    yield axios.delete(`/api/favorites/${action.payload}`, config );
+    yield put({ type: "FETCH_FAVORITE" });
   } catch (error) {
     console.log("error in Delete", error);
   }     
