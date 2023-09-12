@@ -19,6 +19,8 @@ function UserForm() {
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
   const clickedIngredient = useSelector((store) => store.clickedIngredient);
   const [formData, setFormData] = useState("");
+  const [testing, setTesting] = useState([]);
+
   const [recipe, setRecipe] = useState({
     name: "",
     health: 0,
@@ -46,7 +48,7 @@ function UserForm() {
       setIsCardOpen(true);
       console.log("Match found:", foundRecipe);
     } else {
-      console.log("No match");
+      console.log("No match"); // Make this an alert
     }
     setFormData("");
   }
@@ -63,15 +65,76 @@ function UserForm() {
     CookpotOpen();
     dispatch({
       type: "CLICK_INGREDIENT",
-      payload: {id: ingredient.id,
-                imgage: ingredient.image}
-    })
-    console.log(ingredient);
+      payload: { id: ingredient.id, imgage: ingredient.image },
+    });
+    // console.log(ingredient.id);
+    console.log("recipeReducer id's", recipeReducer);
+    // recipeReducer.map((arr) => )
+
+    console.log("recipeReducer id's", recipeReducer[0].ingredient_ids);
     
   }
-  console.log(clickedIngredient)
-  // console.log('inside ingredientData', ingredientData)
 
+
+// function findMatchingRecipes(ingredients, recipes) {
+//   const matchingRecipes = [];
+
+//   recipes.forEach(recipe => {
+//     const ingredientIds = recipe.ingredient_ids;
+//     const matchingIngredients = ingredients.filter(ingredient =>
+//       ingredientIds.includes(ingredient.id)
+//     );
+
+//     if (matchingIngredients.length === ingredientIds.length) {
+//       matchingRecipes.push(recipe);
+//     }
+//   });
+
+//   return matchingRecipes;
+// }
+
+// // Find recipes that match ingredient_ids
+// useEffect(() => {
+//   const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer);
+//   setTesting(matchingRecipes);
+// }, [clickedIngredient, recipeReducer]);
+
+// console.log(testing)
+function findMatchingRecipes(ingredients, recipes) {
+  const matchingRecipes = [];
+
+  recipes.forEach(recipe => {
+    const ingredientIds = recipe.ingredient_ids;
+    const matchingIngredients = ingredients.filter(ingredient =>
+      ingredientIds.includes(ingredient.id)
+    );
+
+    if (matchingIngredients.length === ingredientIds.length) {
+      matchingRecipes.push(recipe);
+    }
+  });
+
+  return matchingRecipes;
+}
+
+// Find matching recipes when ingredients or recipeReducer change
+const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer);
+console.log(matchingRecipes)
+
+
+
+
+  console.log(
+    "clickedingredient",
+    clickedIngredient.sort((a, b) => a.id - b.id)
+  );
+
+  function displayRecipe() {}
+
+  const buttonStyle = {
+    backgroundColor: "black",
+    color: "white", // Set text color to contrast with the black background
+  };
 
   const [isCardOpen, setIsCardOpen] = useState(true);
   const handleCloseClick = () => {
@@ -91,6 +154,12 @@ function UserForm() {
 
   return (
     <>
+    <h1>Matching Recipes</h1>
+      <ul>
+        {matchingRecipes.map(recipe => (
+          <li key={recipe.recipe_id}>{recipe.name}</li>
+        ))}
+      </ul>
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
@@ -125,7 +194,12 @@ function UserForm() {
                     </Box>
                   </Grid>
                   <Grid item xs={4}>
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      style={buttonStyle}
+                    >
                       SEARCH
                     </Button>
                   </Grid>
@@ -223,7 +297,6 @@ function UserForm() {
                     style={{ fontSize: "0.8rem" }}
                     onClick={() => addIngredient(ingredient)}
                     // onClick={() => setingredientData(ingredient.id, ingredient.image)}
-
                   >
                     Add to Crockpot
                   </Button>

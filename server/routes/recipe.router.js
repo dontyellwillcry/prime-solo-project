@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
       FROM ingredients i
       WHERE i.id = ANY(r.ingredient_ids)
   ) AS ingredient_images,
+  r.ingredient_ids,
   r.description,
   r.image AS recipe_image
 FROM
