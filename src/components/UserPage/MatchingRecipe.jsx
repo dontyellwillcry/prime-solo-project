@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -11,9 +11,12 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 function MatchingRecipe() {
+  const dispatch = useDispatch();
+
   // Access ingredients and recipeReducer from Redux store
   const clickedIngredient = useSelector((state) => state.clickedIngredient);
   const recipeReducer = useSelector((state) => state.recipeReducer);
+  
 
   // Function to find recipes that match ingredient_ids
   // Define the findMatchingRecipes function
@@ -41,64 +44,95 @@ function MatchingRecipe() {
     // Return the array of matching recipes
     return matchingRecipes;
   }
+  
 
   // Use the findMatchingRecipes function when clickedIngredient or recipeReducer changes
   const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer);
-  console.log(matchingRecipes);
+
+  console.log("matchingRecipes", matchingRecipes);
+
+  const [isCardOpen, setIsCardOpen] = useState(true);
+
+  function addFavorite(id) {
+    setIsCardOpen(false);
+
+    console.log("Inside addFavorite", id);
+    dispatch({
+      type: "SAVE_FAVORITE",
+      payload: { id }, // Remember to put your payload in an object or your Saga/router will get mad
+    });
+    dispatch({
+      type: "RESET_INGREDIENT",
+    });
+
+    setIsCardOpen(true);
+    
+  }
 
   return (
     <>
-      {/* <ul>
-        {matchingRecipes.map((recipe) => (
-          <li key={recipe.recipe_id}>
-            {recipe.name}
-            <img src={recipe.recipe_image}></img>
-          </li>
-        ))}
-      </ul> */}
+      <img
+        src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
+        alt="Recipe Placeholder"
+        style={{
+          width: "100px",
+          height: "auto",
+          marginBottom: "50px",
+          marginTop: "50px",
+        }}
+      />
+
       <Container maxWidth="md">
-        <Grid container spacing={3} sx={{flexGrow: 1}}>
-          {matchingRecipes.map((recipe) =>
-          <Grid item xs={3} key={recipe.recipe_id}>
-            <Card
-                sx={{
-                  width: 200, // Changes the width of my card
-                  height: 200, // Changes height.
-                  backgroundColor: "rgba(255, 255, 255, 0.1)", // Adjust the transparency here
-                  border: "2px solid #000", // Add a border
-                }}>
+        <Grid
+          container
+          spacing={3}
+          sx={{ flexGrow: 1 }}
+          justifyContent="center"
+        >
+          {matchingRecipes.map((recipe) => (
+            <Grid item xs={3} key={recipe.recipe_id}>
+              {isCardOpen && (
+                <Card
+                  sx={{
+                    width: 200, // Changes the width of my card
+                    height: 200, // Changes height.
+                    backgroundColor: "rgba(255, 255, 255, 0.1)", // Adjust the transparency here
+                    border: "2px solid #000", // Add a border
+                  }}
+                >
                   <CardContent>
-                  <img
-                    src={recipe.recipe_image}
-                    alt={recipe.name}
-                    style={{ maxWidth: "100%", height: "auto" }}
-                  />
-                  <Typography
-                    variant="h5"
-                    component="div"
-                    style={{ fontSize: "1rem" }}
-                  >
-                    {recipe.name}
-                  </Typography>
-                  <Typography
+                    <img
+                      src={recipe.recipe_image}
+                      alt={recipe.name}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                    <Typography
+                      variant="h5"
+                      component="div"
+                      style={{ fontSize: "1rem" }}
+                    >
+                      {recipe.name}
+                    </Typography>
+                    {/* <Typography
                     variant="body2"
                     color="text.secondary"
                     style={{ fontSize: "0.8rem" }}
                   >
                     Type: {recipe.type}
-                  </Typography>
-                  <Button
-                    variant="outlined"
-                    style={{ fontSize: "0.8rem" }}
-                    // onClick={() => addIngredient(ingredient)}
-                    // onClick={() => setingredientData(ingredient.id, ingredient.image)}
-                  >
-                    Favorite
-                  </Button>
-                </CardContent>
+                  </Typography> */}
+                    <Button
+                      variant="outlined"
+                      style={{ fontSize: "0.8rem" }}
+                      onClick={() => addFavorite(recipe.recipe_id)}
+                      // onClick={() => setingredientData(ingredient.id, ingredient.image)}
+                    >
+                      Favorite
+                    </Button>
+                  </CardContent>
                 </Card>
-             </Grid>
-          )}
+              )}
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </>

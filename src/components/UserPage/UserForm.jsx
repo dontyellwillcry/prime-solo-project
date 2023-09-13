@@ -18,10 +18,7 @@ function UserForm() {
   const user = useSelector((store) => store.user);
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
-  const clickedIngredient = useSelector((store) => store.clickedIngredient);
   const [formData, setFormData] = useState("");
-  const [testing, setTesting] = useState([]);
-
   const [recipe, setRecipe] = useState({
     name: "",
     health: 0,
@@ -31,7 +28,6 @@ function UserForm() {
     description: "",
     image: "",
   });
-  // console.log(favoriteReducer)
 
   function searchRecipe(event) {
     event.preventDefault();
@@ -102,23 +98,19 @@ function UserForm() {
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
-          {/* Reduce the spacing to 1 */}
           <Grid item xs={12}>
             <h2>Welcome, {user.username}!</h2>
             <form onSubmit={searchRecipe}>
               <div>
                 <Grid container spacing={1} alignItems="center">
                   {" "}
-                  {/* Reduce the spacing to 1 */}
                   <Grid item xs={8}>
                     <Box
-                      // component="form"
                       sx={{
                         "& > :not(style)": { m: 1 },
                       }}
                       noValidate
                       autoComplete="on"
-                      // onSubmit={searchRecipe}
                     >
                       <TextField
                         placeholder="Search Recipe"
@@ -161,7 +153,13 @@ function UserForm() {
             marginLeft={-40}
           >
             {isCardOpen && (
-              <Card sx={{ maxWidth: 300, backgroundColor: "rgba(255, 255, 255, 0.1)" }} onClick={handleCloseClick}>
+              <Card
+                sx={{
+                  maxWidth: 300,
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                }}
+                onClick={handleCloseClick}
+              >
                 <CardMedia
                   sx={{ height: 190 }}
                   image={recipe.recipe_image}
