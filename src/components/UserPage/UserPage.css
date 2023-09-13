@@ -1,4 +1,4 @@
-.background-user {
+/* .background-user {
   background-image: url('https://c4.wallpaperflare.com/wallpaper/937/285/225/video-game-don-t-starve-wallpaper-preview.jpg');
   background-size: cover;
   background-position: center;
@@ -9,10 +9,9 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-  /* Center content both horizontally and vertically */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: relative; /* Add this line */
-}
+  position: relative; 
+} */

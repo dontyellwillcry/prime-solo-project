@@ -1,8 +1,11 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware.js");
 
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   const query = `SELECT
   r.id AS recipe_id,
   r.name AS name,
@@ -14,6 +17,7 @@ router.get("/", (req, res) => {
       FROM ingredients i
       WHERE i.id = ANY(r.ingredient_ids)
   ) AS ingredient_images,
+  r.ingredient_ids,
   r.description,
   r.image AS recipe_image
 FROM
@@ -29,7 +33,7 @@ FROM
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
   console.log(req.body);
   const ingredientIds = req.body.ingredient_ids.split(",").map(Number);
@@ -67,7 +71,7 @@ router.post("/", (req, res) => {
 //       res.sendStatus(500);
 //     });
 // });
-router.delete("/:id", (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   const recipeId = req.params.id;
 
   const deleteQuery1 = "DELETE FROM recipe WHERE recipe_id=$1";
@@ -91,7 +95,7 @@ router.delete("/:id", (req, res) => {
 });
 
 
-router.put("/:id", (req, res) => {
+router.put("/:id",rejectUnauthenticated,  (req, res) => {
   const updatedRecipe = req.body;
   // const ingredientArray = JSON.parse(updatedRecipe.ingredient_ids)
   // console.log(ingredientArray)

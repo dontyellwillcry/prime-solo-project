@@ -30,13 +30,22 @@ function InfoPage() {
     dispatch({type: "FETCH_FAVORITE"})
   }, []);
 
-  function addFavorite() {
-    console.log(favoriteReducer)
+  function removeFavorite(id) {
+    dispatch({
+      type: "DELETE_FAVORITE",
+      payload: id
+    })
+    console.log(id)
   }
 
   return (
     <div className="container">
       <Typography marginBottom={5}>Flavorpits</Typography>
+      <img
+          src={"https://media.tenor.com/NC4dlQa2BjoAAAAj/dont-starve-wilson.gif"}
+          alt="Recipe Placeholder"
+          style={{ marginBottom: "50px", marginTop: "50px" }}
+        />
       <Container maxWidth="md">
         <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
           {favoriteReducer.map((favorite) => (
@@ -88,7 +97,7 @@ function InfoPage() {
                   <Button
                     variant="outlined"
                     style={{ fontSize: "0.8rem" }}
-                    onClick={() => addFavorite(favorite.id)}
+                    onClick={() => removeFavorite(favorite.id)}
                   >
                     Remove
                   </Button>

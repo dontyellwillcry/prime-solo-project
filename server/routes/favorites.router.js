@@ -20,28 +20,25 @@ router.get("/", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
-// router.get('/', (req, res) => {
-//   console.log("checking endpoint")
-//   if (req.isAuthenticated()) {
-//     console.log("/pet GET route");
-//     console.log("is authenticated?", req.isAuthenticated());
-//     console.log("user", req.user);
-//     let queryText = `SELECT recipe.*, favorites.user_id
-//     FROM recipe
-//     JOIN favorites ON recipe.id = favorites.recipe_id
-//     WHERE favorites.user_id = $1;`;
-//     pool
-//       .query(queryText, [req.user.id])
-//       .then((result) => {
-//         res.send(result.rows);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//         res.sendStatus(500);
-//       });
-//   } else {
-//     res.sendStatus(403);
-//   }});
+router.delete("/:id", rejectUnauthenticated,(req, res) => {
+  const favoriteId = req.params.id;
+  console.log("favID", favoriteId)
+
+  const deleteQuery1 = "DELETE FROM favorites WHERE recipe_id=$1 AND user_id = $2";
+
+  // Execute the first DELETE query
+  pool
+    .query(deleteQuery1, [favoriteId, req.user.id])
+    
+    .then(() => {
+      // Both DELETE operations were successful
+      res.status(200).json({ message: "Recipe and related data deleted" });
+    })
+    .catch((error) => {
+      console.log("Error DELETE /api/favorite", error);
+      res.sendStatus(500);
+    });
+});
 
 router.post("/", rejectUnauthenticated, (req, res) => {
   // POST route code here
