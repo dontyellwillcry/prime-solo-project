@@ -25,7 +25,10 @@ function UserPage() {
   }, []);
   return (
     <div className="background-user">
-      <button onClick={toggleAudio}>Play Music</button>
+      <img src="https://media.tenor.com/42WtOr1eqBoAAAAj/chester-dst.gif" alt="Animated GIF" onClick={toggleAudio}/>
+      <p>Don't Click Me</p>
+      {/* <button onClick={toggleAudio}>Play Music</button> */}
+
       <UserForm />
     </div>
   );
