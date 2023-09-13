@@ -94,12 +94,13 @@ function UserForm() {
 
   return (
     <>
+    <h2>Welcome, {user.username}!</h2>  
       <MatchingRecipe />
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
           <Grid item xs={12}>
-            <h2>Welcome, {user.username}!</h2>
+            
             <form onSubmit={searchRecipe}>
               <div>
                 <Grid container spacing={1} alignItems="center">
@@ -157,6 +158,7 @@ function UserForm() {
                 sx={{
                   maxWidth: 300,
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  
                 }}
                 onClick={handleCloseClick}
               >
@@ -199,52 +201,63 @@ function UserForm() {
         // />
         <p></p>
       )}
-      <Container maxWidth="md">
-        <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
-          {ingredientReducer.map((ingredient) => (
-            // item xs={3} changes how close the cards are together.
-            <Grid item xs={3} key={ingredient.id}>
-              <Card
-                sx={{
-                  width: 200, // Changes the width of my card
-                  height: 200, // Changes height.
-                  backgroundColor: "rgba(255, 255, 255, 0.1)", // Adjust the transparency here
-                  border: "2px solid #000", // Add a border
-                }}
-              >
-                <CardContent>
-                  <img
-                    src={ingredient.image}
-                    alt={ingredient.name}
-                    style={{ maxWidth: "100%", height: "auto" }}
-                  />
-                  <Typography
-                    variant="h5"
-                    component="div"
-                    style={{ fontSize: "1rem" }}
-                  >
-                    {ingredient.name}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    style={{ fontSize: "0.8rem" }}
-                  >
-                    Type: {ingredient.type}
-                  </Typography>
-                  <Button
-                    variant="outlined"
-                    style={{ fontSize: "0.8rem" }}
-                    onClick={() => addIngredient(ingredient)}
-                    // onClick={() => setingredientData(ingredient.id, ingredient.image)}
-                  >
-                    Add to Crockpot
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+      <Container style={{ maxWidth: "1040px" }}>
+        <div
+          style={{
+            marginTop: "100px",
+            maxHeight: "500px", // Adjust the height as needed
+            overflow: "auto",
+            marginLeft: "15px"
+            
+            
+          }}
+        >
+          <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
+            {ingredientReducer.map((ingredient) => (
+              // item xs={3} changes how close the cards are together.
+              <Grid item xs={3} key={ingredient.id}>
+                <Card
+                  sx={{
+                    width: 200, // Changes the width of my card
+                    height: 200, // Changes height.
+                    backgroundColor: "rgba(255, 255, 255, 0.1)", // Adjust the transparency here
+                    border: "2px solid #000", // Add a border
+                  }}
+                >
+                  <CardContent>
+                    <img
+                      src={ingredient.image}
+                      alt={ingredient.name}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                    <Typography
+                      variant="h5"
+                      component="div"
+                      style={{ fontSize: "1rem" }}
+                    >
+                      {ingredient.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      style={{ fontSize: "0.8rem" }}
+                    >
+                      Type: {ingredient.type}
+                    </Typography>
+                    <Button
+                      variant="outlined"
+                      style={{ fontSize: "0.8rem" }}
+                      onClick={() => addIngredient(ingredient)}
+                      // onClick={() => setingredientData(ingredient.id, ingredient.image)}
+                    >
+                      Add to Crockpot
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </div>
       </Container>
     </>
   );

@@ -41,6 +41,11 @@ function InfoPage() {
   return (
     <div className="container">
       <Typography marginBottom={5}>Flavorpits</Typography>
+      <img
+          src={"https://media.tenor.com/NC4dlQa2BjoAAAAj/dont-starve-wilson.gif"}
+          alt="Recipe Placeholder"
+          style={{ marginBottom: "50px", marginTop: "50px" }}
+        />
       <Container maxWidth="md">
         <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
           {favoriteReducer.map((favorite) => (
