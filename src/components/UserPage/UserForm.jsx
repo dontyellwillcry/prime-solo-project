@@ -60,15 +60,18 @@ function UserForm() {
 
   function addIngredient(ingredient) {
     CookpotOpen();
-    dispatch({
-      type: "CLICK_INGREDIENT",
-      payload: { id: ingredient.id, imgage: ingredient.image },
-    });
-    // console.log(ingredient.id);
-    console.log("recipeReducer id's", recipeReducer);
-    // recipeReducer.map((arr) => )
-
-    console.log("recipeReducer id's", recipeReducer[0].ingredient_ids);
+  
+    setTimeout(() => {
+      dispatch({
+        type: "CLICK_INGREDIENT",
+        payload: { id: ingredient.id, imgage: ingredient.image },
+      });
+      // console.log(ingredient.id);
+      console.log("recipeReducer id's", recipeReducer);
+      // recipeReducer.map((arr) => )
+  
+      console.log("recipeReducer id's", recipeReducer[0].ingredient_ids);
+    }, 2000); // 2000 milliseconds = 2 seconds
   }
 
   const buttonStyle = {

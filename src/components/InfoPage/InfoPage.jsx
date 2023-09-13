@@ -29,6 +29,7 @@ function InfoPage() {
     })
     console.log(id)
   }
+  
 
   return (
     <div className="container">
