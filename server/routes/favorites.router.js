@@ -6,7 +6,7 @@ const {
 } = require("../modules/authentication-middleware.js");
 
 router.get("/", rejectUnauthenticated, (req, res) => {
-  let query = `SELECT recipe.*, favorites.user_id
+  let query = `SELECT recipe.*, favorites.user_id, ARRAY(SELECT image FROM ingredients WHERE id = ANY(recipe.ingredient_ids)) AS ingredient_images
   FROM recipe
   JOIN favorites ON recipe.id = favorites.recipe_id
   WHERE favorites.user_id = $1;`;

@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Input from "@mui/material/Input";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -46,15 +38,15 @@ function InfoPage() {
           alt="Recipe Placeholder"
           style={{ marginBottom: "50px", marginTop: "50px" }}
         />
-      <Container maxWidth="md">
-        <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
+      <Container maxWidth="lg">
+        <Grid container spacing={6} sx={{ flexGrow: 1 }} columns={{ xs: 10 }}>
           {favoriteReducer.map((favorite) => (
             // item xs={3} changes how close the cards are together.
             <Grid item xs={3} key={favorite.id}>
               <Card
                 sx={{
-                  width: 200, // Changes the width of my card
-                  height: 215, // Changes height.
+                  width: 300, // Changes the width of my card
+                  height: 335, // Changes height.
                   // backgroundColor: "rgba(255, 255, 255, 0.1)", 
                   backgroundColor: "orange", 
                   border: "2px solid #000", // Add a border
@@ -94,6 +86,24 @@ function InfoPage() {
                   >
                     Sanity: {favorite.sanity}
                   </Typography>
+                  <Grid>
+                  <img
+                    src={favorite.ingredient_images[0]}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                  <img
+                    src={favorite.ingredient_images[1]}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                  <img
+                    src={favorite.ingredient_images[2]}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                  <img
+                    src={favorite.ingredient_images[3]}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                  </Grid>
                   <Button
                     variant="outlined"
                     style={{ fontSize: "0.8rem" }}
