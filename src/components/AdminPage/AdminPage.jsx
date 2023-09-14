@@ -17,7 +17,7 @@ function AdminPage() {
     dispatch({ type: "FETCH_RECIPE" });
   }, []);
   const BlurredBackground = styled('div')({
-    backdropFilter: 'blur(5px)', // Adjust the blur intensity as needed
+    backdropFilter: 'blur(20px)', // Adjust the blur intensity as needed
     position: 'absolute',
     top: 150,
     left: 200,

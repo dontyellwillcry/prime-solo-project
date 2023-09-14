@@ -10,6 +10,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CookingSound from "../SoundFiles/CookingSound";
+import RecipeReady from "../SoundFiles/RecipeReady";
+import Modal from '@mui/material/Modal';
+
+
 
 function MatchingRecipe() {
   const dispatch = useDispatch();
@@ -17,6 +21,8 @@ function MatchingRecipe() {
   // Access ingredients and recipeReducer from Redux store
   const clickedIngredient = useSelector((state) => state.clickedIngredient);
   const recipeReducer = useSelector((state) => state.recipeReducer);
+  const [ingredientImage, setIngredientImages] = useState([])
+
   
 
   // Function to find recipes that match ingredient_ids
@@ -69,21 +75,41 @@ function MatchingRecipe() {
     
   }
 
+  function closeCard() {
+    setIsCardOpen(false);
+    setIngredientImages([])
+    dispatch({
+      type: "RESET_INGREDIENT",
+    });
+    setIsCardOpen(true);
+
+
+  }
+
   return (
     <>
       
       {/* Render content based on conditions */}
     {matchingRecipes.length > 0 ? (
+      
       <Container maxWidth="md">
+        
         <Grid
           container
           spacing={3}
           sx={{ flexGrow: 1 }}
           justifyContent="center"
         >
+          
           {matchingRecipes.map((recipe) => (
             <Grid item xs={3} key={recipe.recipe_id}>
               {isCardOpen && (
+              //   <Modal
+              //   // open={open}
+              //   // onClose={handleClose}
+              //   aria-labelledby="modal-modal-title"
+              //   aria-describedby="modal-modal-description"
+              // >
                 <Card
                   sx={{
                     width: 200,
@@ -91,6 +117,7 @@ function MatchingRecipe() {
                     backgroundColor: "rgba(255, 255, 255, 0.1)",
                     border: "2px solid #000",
                   }}
+                  onClick={closeCard}
                 >
                   <CardContent>
                     <img
@@ -115,7 +142,10 @@ function MatchingRecipe() {
                     </Button>
                   </CardContent>
                   </Card>
+                  // </Modal>
               )}
+              {RecipeReady()}
+
             </Grid>
           ))}
         </Grid>
@@ -132,6 +162,7 @@ function MatchingRecipe() {
         }}
       />
     ) : (
+      <Grid>
       <img
         src={"/images/icons/crockpot.png"}
         alt="Recipe Placeholder"
@@ -141,8 +172,11 @@ function MatchingRecipe() {
           marginBottom: "50px",
           marginTop: "50px",
         }}
+        
       />
+      </Grid>
     )}
+    
     </>
   );
 }

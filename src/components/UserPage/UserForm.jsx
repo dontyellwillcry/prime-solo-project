@@ -13,7 +13,6 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import MatchingRecipe from "./MatchingRecipe";
 import CookingSound from "../SoundFiles/CookingSound";
-import RecipeReady from "../SoundFiles/RecipeReady";
 
 function UserForm() {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ function UserForm() {
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
   const [formData, setFormData] = useState("");
-
+  const [ingredientImage, setIngredientImages] = useState([])
   const [recipe, setRecipe] = useState({
     name: "",
     health: 0,
@@ -54,14 +53,13 @@ function UserForm() {
   }
 
   function addFavorite() {
-    console.log("Inside addFavorite", recipe.recipe_id);
     dispatch({
       type: "SAVE_FAVORITE",
       payload: { id: recipe.recipe_id }, // Remember to put your payload in an object or your Saga/router will get mad
     });
   }
   let cookingTimer = 0;
-  let recipeReadyCalled = false;
+  // let recipeReadyCalled = false;
   function addIngredient(ingredient) {
     cookingTimer += 1;
     if (cookingTimer == 4) {
@@ -71,25 +69,25 @@ function UserForm() {
     }
 
     setTimeout(() => {
+      
       dispatch({
         type: "CLICK_INGREDIENT",
         payload: { id: ingredient.id, imgage: ingredient.image },
       });
-      if (!recipeReadyCalled) {
-        RecipeReady();
-        recipeReadyCalled = true; // Set the flag to true to prevent multiple calls
-      }
-    }, 5000); //
-    recipeReadyCalled = false;
+    
+      
+    }, 4000); //
   }
   function ingredientClickSound() {
     CookpotOpen();
   }
 
   function onIngredientClick(ingredient) {
+    setIngredientImages([...ingredientImage, ingredient.image]);    
     addIngredient(ingredient);
     ingredientClickSound();
   }
+  console.log("Did this work", ingredientImage)
 
   const buttonStyle = {
     backgroundColor: "black",
@@ -109,13 +107,26 @@ function UserForm() {
       image: "",
     });
   };
+  
 
   const ariaLabel = { "aria-label": "description" };
+  function removeImage(index) {
+    const newImages = [...ingredientImage];
+    newImages.splice(index, 1); // Remove the image at the specified index
+    setIngredientImages(newImages);
+  }
 
   return (
     <>
       <h2>Welcome, {user.username}!</h2>
       <MatchingRecipe />
+      
+      <div>
+        {/* Display the accumulated images */}
+        {ingredientImage.map((image, index) => (
+          <img key={index} src={image} alt={`Ingredient ${index}`} onClick={() => removeImage(index)}/>
+        ))}
+      </div>
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
@@ -207,16 +218,7 @@ function UserForm() {
           </Grid>
         </Container>
       ) : (
-        // <img
-        //   src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
-        //   alt="Recipe Placeholder"
-        //   style={{
-        //     width: "100px",
-        //     height: "auto",
-        //     marginBottom: "50px",
-        //     marginTop: "50px",
-        //   }}
-        // />
+        
         <p></p>
       )}
       <Container style={{ maxWidth: "1040px" }}>
@@ -234,17 +236,19 @@ function UserForm() {
               <Grid item xs={3} key={ingredient.id}>
                 <Card
                   sx={{
-                    width: 200, // Changes the width of my card
-                    height: 200, // Changes height.
+                    width: 110, // Changes the width of my card
+                    height: 115, // Changes height.
                     backgroundColor: "rgba(255, 255, 255, 0.1)", // Adjust the transparency here
                     border: "2px solid #000", // Add a border
                   }}
+                  onClick={() => onIngredientClick(ingredient)}
                 >
                   <CardContent>
                     <img
                       src={ingredient.image}
                       alt={ingredient.name}
                       style={{ maxWidth: "100%", height: "auto" }}
+                      
                     />
                     <Typography
                       variant="h5"
@@ -258,16 +262,15 @@ function UserForm() {
                       color="text.secondary"
                       style={{ fontSize: "0.8rem" }}
                     >
-                      Type: {ingredient.type}
+                      {/* Type: {ingredient.type} */}
                     </Typography>
-                    <Button
+                    {/* <Button
                       variant="outlined"
                       style={{ fontSize: "0.8rem" }}
                       onClick={() => onIngredientClick(ingredient)}
-                      // onClick={() => setingredientData(ingredient.id, ingredient.image)}
                     >
                       Add to Crockpot
-                    </Button>
+                    </Button> */}
                   </CardContent>
                 </Card>
               </Grid>

@@ -30,16 +30,19 @@ function InfoPage() {
     console.log(id)
   }
   
+    const containerStyle = {
+      marginLeft: '470px', // Adjust the margin value as needed
+    };
 
   return (
     <div className="container">
-      <Typography marginBottom={5}>Flavorpits</Typography>
+      {/* <Typography marginBottom={5}>Flavorpits</Typography> */}
       <img
           src={"https://media.tenor.com/NC4dlQa2BjoAAAAj/dont-starve-wilson.gif"}
           alt="Recipe Placeholder"
           style={{ marginBottom: "50px", marginTop: "50px" }}
         />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg"  style={containerStyle}>
         <Grid container spacing={6} sx={{ flexGrow: 1 }} columns={{ xs: 10 }}>
           {favoriteReducer.map((favorite) => (
             // item xs={3} changes how close the cards are together.
