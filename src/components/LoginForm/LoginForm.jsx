@@ -2,6 +2,16 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import './LoginForm.css';
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import CookingSound from "../SoundFiles/CookingSound";
 
 
 function LoginForm() {
@@ -27,13 +37,17 @@ function LoginForm() {
   }; // end login
 
   return (
+    
     <form className="formPanel" onSubmit={login} >
+      <Container>
+        <Card>
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
+      
       <div>
         <label htmlFor="username">
           Username:
@@ -61,7 +75,10 @@ function LoginForm() {
       <div>
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div>
+      </Card>
+      </Container>
     </form>
+   
   );
 }
 

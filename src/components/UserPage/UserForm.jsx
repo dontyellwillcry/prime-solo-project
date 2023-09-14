@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import MatchingRecipe from "./MatchingRecipe";
+import CookingSound from "../SoundFiles/CookingSound";
+import RecipeReady from "../SoundFiles/RecipeReady";
 
 function UserForm() {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function UserForm() {
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
   const [formData, setFormData] = useState("");
+
   const [recipe, setRecipe] = useState({
     name: "",
     health: 0,
@@ -57,21 +60,35 @@ function UserForm() {
       payload: { id: recipe.recipe_id }, // Remember to put your payload in an object or your Saga/router will get mad
     });
   }
-
+  let cookingTimer = 0;
+  let recipeReadyCalled = false;
   function addIngredient(ingredient) {
-    CookpotOpen();
-  
+    cookingTimer += 1;
+    if (cookingTimer == 4) {
+      CookingSound();
+
+      cookingTimer = 0;
+    }
+
     setTimeout(() => {
       dispatch({
         type: "CLICK_INGREDIENT",
         payload: { id: ingredient.id, imgage: ingredient.image },
       });
-      // console.log(ingredient.id);
-      console.log("recipeReducer id's", recipeReducer);
-      // recipeReducer.map((arr) => )
-  
-      console.log("recipeReducer id's", recipeReducer[0].ingredient_ids);
-    }, 2000); // 2000 milliseconds = 2 seconds
+      if (!recipeReadyCalled) {
+        RecipeReady();
+        recipeReadyCalled = true; // Set the flag to true to prevent multiple calls
+      }
+    }, 5000); //
+    recipeReadyCalled = false;
+  }
+  function ingredientClickSound() {
+    CookpotOpen();
+  }
+
+  function onIngredientClick(ingredient) {
+    addIngredient(ingredient);
+    ingredientClickSound();
   }
 
   const buttonStyle = {
@@ -97,13 +114,12 @@ function UserForm() {
 
   return (
     <>
-    <h2>Welcome, {user.username}!</h2>  
+      <h2>Welcome, {user.username}!</h2>
       <MatchingRecipe />
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
           <Grid item xs={12}>
-            
             <form onSubmit={searchRecipe}>
               <div>
                 <Grid container spacing={1} alignItems="center">
@@ -161,7 +177,6 @@ function UserForm() {
                 sx={{
                   maxWidth: 300,
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  
                 }}
                 onClick={handleCloseClick}
               >
@@ -210,9 +225,7 @@ function UserForm() {
             marginTop: "100px",
             maxHeight: "500px", // Adjust the height as needed
             overflow: "auto",
-            marginLeft: "15px"
-            
-            
+            marginLeft: "15px",
           }}
         >
           <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
@@ -250,7 +263,7 @@ function UserForm() {
                     <Button
                       variant="outlined"
                       style={{ fontSize: "0.8rem" }}
-                      onClick={() => addIngredient(ingredient)}
+                      onClick={() => onIngredientClick(ingredient)}
                       // onClick={() => setingredientData(ingredient.id, ingredient.image)}
                     >
                       Add to Crockpot
