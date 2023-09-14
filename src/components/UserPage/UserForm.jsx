@@ -20,7 +20,7 @@ function UserForm() {
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
   const [formData, setFormData] = useState("");
-  const [ingredientImage, setIngredientImages] = useState([])
+  const [ingredientImage, setIngredientImages] = useState([]);
   const [cookingTimer, setCookingTimer] = useState(0);
 
   const [recipe, setRecipe] = useState({
@@ -81,13 +81,10 @@ function UserForm() {
     // }
 
     setTimeout(() => {
-      
       dispatch({
         type: "CLICK_INGREDIENT",
         payload: { id: ingredient.id, imgage: ingredient.image },
       });
-    
-      
     }, 4000); //
   }
   function ingredientClickSound() {
@@ -95,8 +92,7 @@ function UserForm() {
   }
 
   function onIngredientClick(ingredient) {
-    
-    setIngredientImages([...ingredientImage, ingredient.image]);    
+    setIngredientImages([...ingredientImage, ingredient.image]);
     addIngredient(ingredient);
     ingredientClickSound();
   }
@@ -119,7 +115,6 @@ function UserForm() {
       image: "",
     });
   };
-  
 
   const ariaLabel = { "aria-label": "description" };
   function removeImage(index) {
@@ -132,13 +127,36 @@ function UserForm() {
     <>
       <h2>Welcome, {user.username}!</h2>
       <MatchingRecipe />
-      
-      <div>
-        {/* Display the accumulated images */}
-        {ingredientImage.map((image, index) => (
-          <img key={index} src={image} alt={`Ingredient ${index}`} onClick={() => removeImage(index)}/>
-        ))}
-      </div>
+      <Container
+        style={{
+          marginLeft: "1300px",
+          marginBottom: "0px",
+          marginTop: "0",
+          width: "50px",
+          height: "50px",
+        }}
+      >
+        <div>
+          {/* Display the accumulated images */}
+
+          <Grid
+            container
+            spacing={0}
+            justifyContent="flex-end"
+            alignItems="flex-start"
+          >
+            {ingredientImage.map((image, index) => (
+              <Grid item key={index}>
+                <img
+                  src={image}
+                  alt={`Ingredient ${index}`}
+                  onClick={() => removeImage(index)}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      </Container>
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
@@ -230,16 +248,15 @@ function UserForm() {
           </Grid>
         </Container>
       ) : (
-        
         <p></p>
       )}
-      <Container style={{ maxWidth: "1040px" }}>
+      <Container style={{ maxWidth: "1040px"}}>
         <div
           style={{
             marginTop: "100px",
             maxHeight: "500px", // Adjust the height as needed
             overflow: "auto",
-            marginLeft: "15px",
+            marginLeft: "90px",
           }}
         >
           <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
@@ -260,7 +277,6 @@ function UserForm() {
                       src={ingredient.image}
                       alt={ingredient.name}
                       style={{ maxWidth: "100%", height: "auto" }}
-                      
                     />
                     <Typography
                       variant="h5"
