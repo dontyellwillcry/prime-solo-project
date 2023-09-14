@@ -21,6 +21,8 @@ function UserForm() {
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
   const [formData, setFormData] = useState("");
   const [ingredientImage, setIngredientImages] = useState([])
+  const [cookingTimer, setCookingTimer] = useState(0);
+
   const [recipe, setRecipe] = useState({
     name: "",
     health: 0,
@@ -58,15 +60,25 @@ function UserForm() {
       payload: { id: recipe.recipe_id }, // Remember to put your payload in an object or your Saga/router will get mad
     });
   }
-  let cookingTimer = 0;
+  // let cookingTimer = 0;
   // let recipeReadyCalled = false;
-  function addIngredient(ingredient) {
-    cookingTimer += 1;
-    if (cookingTimer == 4) {
+  useEffect(() => {
+    if (cookingTimer === 4) {
       CookingSound();
-
-      cookingTimer = 0;
+      setCookingTimer(0); // Reset the timer
     }
+  }, [cookingTimer]);
+  function addIngredient(ingredient) {
+    setCookingTimer((prevTimer) => prevTimer + 1); // Increment the timer
+
+    // console.log("Cooking Timer", cookingTimer)
+    // cookingTimer += 1;
+    // console.log("Cooking Timer", cookingTimer)
+    // if (cookingTimer === 4) {
+    //   CookingSound();
+
+    //   cookingTimer = 0;
+    // }
 
     setTimeout(() => {
       
@@ -83,11 +95,11 @@ function UserForm() {
   }
 
   function onIngredientClick(ingredient) {
+    
     setIngredientImages([...ingredientImage, ingredient.image]);    
     addIngredient(ingredient);
     ingredientClickSound();
   }
-  console.log("Did this work", ingredientImage)
 
   const buttonStyle = {
     backgroundColor: "black",
