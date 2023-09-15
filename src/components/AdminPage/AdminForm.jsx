@@ -36,6 +36,7 @@ function AdminForm() {
     description: "",
     image: "",
   });
+  
 
   function searchRecipe(event) {
     event.preventDefault();
@@ -59,15 +60,20 @@ function AdminForm() {
   }
 
   function deleteRecipe() {
+    setIsCardOpen(false);
+
     dispatch({
       type: "DELETE_RECIPE",
       payload: recipe.recipe_id,
     });
     console.log("recipe.id", recipe)
     dispatch({ type: "FETCH_RECIPE" });
+
+
   }
 
   const [isCardOpen, setIsCardOpen] = useState(true);
+
   const handleCloseClick = () => {
     setIsCardOpen(false);
     setRecipe({

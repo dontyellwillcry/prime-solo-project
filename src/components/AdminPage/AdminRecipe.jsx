@@ -56,7 +56,17 @@ const AdminRecipe = () => {
     });
   };
   function dummyData() {
-    console.log("Dummy")
+    const presetData = {
+      name: "Preset Recipe",
+      health: 100,
+      hunger: 50,
+      sanity: 75,
+      ingredient_ids: "1,2,3", // Example ingredient IDs
+      description: "This is a preset recipe.",
+      image: "https://example.com/preset-image.jpg", // Example image URL
+    };
+  
+    setFormData(presetData);
     
   }
 

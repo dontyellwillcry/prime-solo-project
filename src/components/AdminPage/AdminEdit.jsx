@@ -37,6 +37,7 @@ function AdminEdit({id}) {
   const handleDispatch = (event) => {
     event.preventDefault();
     console.log("info to efit", formData)
+
     const action = {
       type: "EDIT_RECIPE",
       payload: formData,
@@ -44,6 +45,7 @@ function AdminEdit({id}) {
     dispatch(action);
     handleClose()
     console.log("Here is the action", action)
+
   };
 
   const style = {
