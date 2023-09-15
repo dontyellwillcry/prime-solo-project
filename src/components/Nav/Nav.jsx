@@ -3,14 +3,18 @@ import { Link } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
 import { useSelector } from "react-redux";
+import Typography from "@mui/material/Typography";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav">
+    <div>
       <Link to="/home">
-        <h2 className="nav-title" style={{ color: 'white' }}>Lets Cook Together</h2>
+        <h2 className="nav-title" style={{ color: "white" }}>
+          Lets Cook Together
+        </h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
