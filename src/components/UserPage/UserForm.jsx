@@ -22,7 +22,6 @@ function UserForm() {
   const [formData, setFormData] = useState("");
   const [ingredientImage, setIngredientImages] = useState([]);
   const [cookingTimer, setCookingTimer] = useState(0);
-
   const [recipe, setRecipe] = useState({
     name: "",
     health: 0,
@@ -50,6 +49,7 @@ function UserForm() {
       console.log("Match found:", foundRecipe);
     } else {
       console.log("No match"); // Make this an alert
+      alert("No such recipe, Please speak with Cheif Gordon Ramsey");
     }
     setFormData("");
   }
@@ -71,14 +71,7 @@ function UserForm() {
   function addIngredient(ingredient) {
     setCookingTimer((prevTimer) => prevTimer + 1); // Increment the timer
 
-    // console.log("Cooking Timer", cookingTimer)
-    // cookingTimer += 1;
-    // console.log("Cooking Timer", cookingTimer)
-    // if (cookingTimer === 4) {
-    //   CookingSound();
-
-    //   cookingTimer = 0;
-    // }
+   
 
     setTimeout(() => {
       dispatch({
