@@ -74,7 +74,7 @@ const AdminRecipe = () => {
           onSubmit={handleDispatch}
         >
           <Grid container spacing={2}>
-            <Grid xs={8}>
+            <Grid xs={12}>
               <h2>Create a New Recipe</h2>
 
               <TextField
@@ -87,6 +87,7 @@ const AdminRecipe = () => {
                 onChange={handleChange}
                 InputProps={{ style: { color: "white" } }}
                 sx={{ mb: 2 }}
+                
               />
 
               <TextField

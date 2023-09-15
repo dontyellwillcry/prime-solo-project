@@ -3,4 +3,4 @@ const CookpotOpen = () => {
     audio.play();
 }
 
-export default CookpotOpen;
+export default CookpotOpen; 

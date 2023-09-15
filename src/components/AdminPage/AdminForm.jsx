@@ -87,6 +87,7 @@ function AdminForm() {
 
     // boxShadow:
   };
+  
 
   return (
     <>
@@ -104,6 +105,7 @@ function AdminForm() {
             name="name"
             value={formData}
             onChange={(event) => setFormData(event.target.value)}
+            size="small"
           />
           <Button type="submit" variant="contained" style={buttonStyle}>
             SEARCH

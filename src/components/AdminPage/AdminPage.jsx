@@ -16,11 +16,25 @@ function AdminPage() {
     dispatch({ type: "FETCH_INGREDIENT" });
     dispatch({ type: "FETCH_RECIPE" });
   }, []);
+  const BlurredBackground = styled('div')({
+    backdropFilter: 'blur(20px)', // Adjust the blur intensity as needed
+    position: 'absolute',
+    top: 150,
+    left: 200,
+    right: 200,
+    width: '80%',
+    height: '90%',
+    zIndex: -1,
+    
+    // You may also want to set opacity for better readability of the content
+    // opacity: 0.8, // Adjust the opacity as needed
+  });
 
   return (
     <>
+    <BlurredBackground />
     <h1> Admin page</h1>
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" style={{ width: '90%', margin: '20px 800px' }}>
     <Grid container rowSpacing={1} columnSpacing={{xs: 1 }}>
     <Grid item xs={6}>
       <AdminRecipe />
@@ -30,6 +44,7 @@ function AdminPage() {
       </Grid>
       </Grid>
       </Container>
+      
     </>
   );
 }
