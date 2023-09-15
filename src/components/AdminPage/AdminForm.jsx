@@ -61,8 +61,9 @@ function AdminForm() {
   function deleteRecipe() {
     dispatch({
       type: "DELETE_RECIPE",
-      payload: recipe.id,
+      payload: recipe.recipe_id,
     });
+    console.log("recipe.id", recipe)
     dispatch({ type: "FETCH_RECIPE" });
   }
 
@@ -128,7 +129,7 @@ function AdminForm() {
             marginLeft={1}
           >
             {isCardOpen && (
-              <Card sx={{ maxWidth: 300 }} style={transparentCardStyle}>
+              <Card sx={{ maxWidth: 300 }} style={transparentCardStyle} key={recipe.id}>
                 <CardMedia
                   sx={{ height: 190 }}
                   image={recipe.recipe_image}
@@ -154,7 +155,7 @@ function AdminForm() {
                 </CardContent>
                 <CardActions>
                   {/* <Button size="small">Edit</Button> */}
-                  <AdminEdit id={recipe.id} />
+                  <AdminEdit id={recipe.recipe_id} />
                   <Button
                     size="small"
                     onClick={deleteRecipe}

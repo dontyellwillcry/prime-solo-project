@@ -55,6 +55,10 @@ const AdminRecipe = () => {
       image: "",
     });
   };
+  function dummyData() {
+    console.log("Dummy")
+    
+  }
 
   return (
     <div>
@@ -75,7 +79,7 @@ const AdminRecipe = () => {
         >
           <Grid container spacing={2}>
             <Grid xs={12}>
-              <h2>Create a New Recipe</h2>
+              <h2 onClick={dummyData}>Create a New Recipe</h2>
 
               <TextField
                 label="Name"
