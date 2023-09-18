@@ -1,121 +1,93 @@
+# Let's Cook Together - React App
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+Welcome to **Let's Cook Together**, a fun and interactive cooking app inspired by *Don't Starve Together*. With this app, you can cook up delicious recipes with friends or by yourself. Here's a quick guide on how to use the app and some information about the technologies used to build it.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+## Table of Contents
 
-## Use the Template for This Repository (Don't Clone)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+## Getting Started
 
+To get started with Let's Cook Together, follow these simple steps:
 
-## Prerequisites
+1. **Clone the Repository**: Start by cloning this repository to your local machine.
 
-Before you get started, make sure you have the following software installed on your computer:
-
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
-
-## Create database and table
-
-Create a new database called `prime_app` and create a `user` table:
-
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
+```bash
+git clone git@github.com:dontyellwillcry/prime-solo-project.git
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+2. **Install Dependencies**: Navigate to the project directory and install the required dependencies for both the frontend and backend.
 
-## Development Setup Instructions
+```bash
+cd lets-cook-together
+npm install
+cd client
+npm install
+```
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+3. **Run the App**: Start the development server for both the frontend and backend.
 
-## Debugging
+```bash
+# In the project root directory
+npm run server
+npm run client
+```
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+Now you should be able to access the app by opening your browser and navigating to `http://localhost:3000`.
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+## Features
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+- **Ingredient Selection**: After logging in, users can select up to 4 ingredients from a list. These ingredients will be added to a virtual crockpot.
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+- **Cooking Simulation**: Once ingredients are selected, the crockpot will begin to shake, simulating the cooking process.
 
-## Testing Routes with Postman
+- **Recipe Generation**: After a few seconds of shaking, a recipe will be generated based on the selected ingredients and displayed to the user.
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+- **Favorites**: Users can mark recipes as favorites and save them to their favorites page for future reference.
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+## Technologies Used
 
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
+Let's Cook Together is built using the following technologies:
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+- JavaScript
+- React
+- React Redux
+- Node.js
+- Express.js
+- Redux Saga
 
-## Production Build
+## Installation
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+If you want to run this app locally, please follow the [Getting Started](#getting-started) section above.
 
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
+## Usage
 
-## Lay of the Land
+1. **User Registration/Login**: Register or log in to your account to get started.
 
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
+2. **Ingredient Selection**: After logging in, browse the list of ingredients and click up to 4 ingredients you'd like to use for cooking.
 
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
+3. **Cooking Simulation**: Watch your crockpot shake as it simulates the cooking process based on your ingredient selection.
 
-Directory Structure:
+4. **Recipe Generation**: After the simulation is complete, a recipe will be displayed based on your selected ingredients.
 
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
+5. **Favorites**: If you liked a recipe, click the favorite button to save it to your favorites page.
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
+6. **Favorites Page**: Visit your favorites page to see all your saved recipes. You can also remove recipes from your favorites list if you change your mind.
 
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
+## Contributing
 
-## Deployment
+Contributions to this project are welcome! If you'd like to contribute, please follow these steps:
 
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and submit a pull request.
 
-## Update Documentation
+## License
 
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
