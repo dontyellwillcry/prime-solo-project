@@ -45,14 +45,15 @@ function Nav() {
             Admin Page
           </Link>
         ) : (
-          <Link className="navLink" to="/user">
-            Home
-          </Link>
+          // <Link className="navLink" to="/user">
+          //   Home
+          // </Link>
+          <p></p>
         )}
 
-        <Link className="navLink" to="/about">
+        {/* <Link className="navLink" to="/about">
           About
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
