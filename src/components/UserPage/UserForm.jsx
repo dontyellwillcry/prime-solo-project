@@ -71,8 +71,6 @@ function UserForm() {
   function addIngredient(ingredient) {
     setCookingTimer((prevTimer) => prevTimer + 1); // Increment the timer
 
-   
-
     setTimeout(() => {
       dispatch({
         type: "CLICK_INGREDIENT",
@@ -109,6 +107,8 @@ function UserForm() {
     });
   };
 
+  
+
   const ariaLabel = { "aria-label": "description" };
   function removeImage(index) {
     const newImages = [...ingredientImage];
@@ -120,36 +120,37 @@ function UserForm() {
     <>
       <h2>Welcome, {user.username}!</h2>
       <MatchingRecipe />
-      <Container
-        style={{
-          marginLeft: "1300px",
-          marginBottom: "0px",
-          marginTop: "0",
-          width: "50px",
-          height: "50px",
+      <Box
+        sx={{
+          width: 50,
+          marginLeft: 170,
+          marginBottom: 0,
+          marginTop: 0,
+          height: 200,
+          // backgroundColor: 'primary.dark',
+          // '&:hover': {
+          //   backgroundColor: 'primary.main',
+          //   opacity: [0.9, 0.8, 0.7],
+          // },
         }}
       >
-        <div>
-          {/* Display the accumulated images */}
-
-          <Grid
-            container
-            spacing={0}
-            justifyContent="flex-end"
-            alignItems="flex-start"
-          >
-            {ingredientImage.map((image, index) => (
-              <Grid item key={index}>
-                <img
-                  src={image}
-                  alt={`Ingredient ${index}`}
-                  onClick={() => removeImage(index)}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-      </Container>
+        <Grid
+          container
+          spacing={0}
+          justifyContent="flex-end"
+          alignItems="flex-start"
+        >
+          {ingredientImage.map((image, index) => (
+            <Grid item key={index}>
+              <img
+                src={image}
+                alt={`Ingredient ${index}`}
+                onClick={() => removeImage(index)}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
@@ -202,7 +203,7 @@ function UserForm() {
             spacing={5}
             sx={{ flexGrow: 1 }}
             columns={{ xs: 4 }}
-            marginBottom={10}
+            marginBottom={1}
             marginTop={10}
             marginLeft={-40}
           >
@@ -243,7 +244,7 @@ function UserForm() {
       ) : (
         <p></p>
       )}
-      <Container style={{ maxWidth: "1040px"}}>
+      <Container style={{ maxWidth: "1040px" }}>
         <div
           style={{
             marginTop: "100px",
@@ -252,7 +253,7 @@ function UserForm() {
             marginLeft: "90px",
           }}
         >
-          <Grid container spacing={3} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
+          <Grid container spacing={6} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}>
             {ingredientReducer.map((ingredient) => (
               // item xs={3} changes how close the cards are together.
               <Grid item xs={3} key={ingredient.id}>

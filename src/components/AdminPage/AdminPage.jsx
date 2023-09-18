@@ -33,7 +33,7 @@ function AdminPage() {
   return (
     <>
     <BlurredBackground />
-    <h1> Admin page</h1>
+    <h1 style={{ color: 'white' }}> Admin page</h1>
     <Container maxWidth="sm" style={{ width: '90%', margin: '20px 800px' }}>
     <Grid container rowSpacing={1} columnSpacing={{xs: 1 }}>
     <Grid item xs={6}>

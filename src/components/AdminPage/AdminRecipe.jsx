@@ -55,6 +55,20 @@ const AdminRecipe = () => {
       image: "",
     });
   };
+  function dummyData() {
+    const presetData = {
+      name: "Waffles",
+      health: 60,
+      hunger: 37,
+      sanity: 5,
+      ingredient_ids: "14,2,4, 10", // Example ingredient IDs
+      description: "Waffles are a difficult food to obtain due to needing butter, which has a 2% chance of dropping from butterflies. Eggs are also another factor which limits you from getting waffles early-game.",
+      image: "images/crockpot/waffles.png", // Example image URL
+    };
+  
+    setFormData(presetData);
+    
+  }
 
   return (
     <div>
@@ -75,7 +89,7 @@ const AdminRecipe = () => {
         >
           <Grid container spacing={2}>
             <Grid xs={12}>
-              <h2>Create a New Recipe</h2>
+              <h2 onClick={dummyData} style={{ color: 'white' }}>Create a New Recipe</h2>
 
               <TextField
                 label="Name"
@@ -160,7 +174,7 @@ const AdminRecipe = () => {
               <Button
                 variant="outlined"
                 type="submit"
-                style={{ color: "yellow", borderColor: "yellow" }}
+                style={{ color: "white", borderColor: "white" }}
               >
                 Save Recipe
               </Button>

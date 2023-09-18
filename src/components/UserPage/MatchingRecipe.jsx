@@ -81,6 +81,12 @@ function MatchingRecipe() {
 
 
   }
+  const customContainerStyle = {
+    width: '300px', // Set your desired width here
+    height: '100px', // Set your desired height here
+    marginRight: "950px"
+    
+  };
 
   return (
     <>
@@ -88,7 +94,7 @@ function MatchingRecipe() {
       {/* Render content based on conditions */}
     {matchingRecipes.length > 0 ? (
       
-      <Container maxWidth="md">
+      <Container maxWidth="md" style={customContainerStyle}>
         
         <Grid
           container
@@ -112,6 +118,7 @@ function MatchingRecipe() {
                     height: 200,
                     backgroundColor: "rgba(255, 255, 255, 0.1)",
                     border: "2px solid #000",
+                    marginBottom: 0,
                   }}
                   onClick={closeCard}
                 >
@@ -148,13 +155,13 @@ function MatchingRecipe() {
       </Container>
     ) : clickedIngredient.length > 0 ? (
       <img
-        src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"} // Replace with the correct image source
+        src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
         alt="Recipe Placeholder"
         style={{
           width: "100px",
           height: "auto",
-          marginBottom: "50px",
-          marginTop: "50px",
+          marginBottom: "0px",
+          marginTop: "10px",
         }}
       />
     ) : (
@@ -165,8 +172,8 @@ function MatchingRecipe() {
         style={{
           width: "100px",
           height: "auto",
-          marginBottom: "50px",
-          marginTop: "50px",
+          marginBottom: "0px",
+          marginTop: "10px",
         }}
         
       />

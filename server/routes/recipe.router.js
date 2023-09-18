@@ -74,7 +74,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   const recipeId = req.params.id;
 
-  const deleteQuery1 = "DELETE FROM recipe WHERE recipe_id=$1";
+  const deleteQuery1 = "DELETE FROM recipe WHERE recipe.id=$1";
   const deleteQuery2 = "DELETE FROM favorites WHERE recipe_id=$1";
 
   // Execute the first DELETE query
@@ -95,7 +95,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 
-router.put("/:id",rejectUnauthenticated,  (req, res) => {
+router.put("/:id", (req, res) => {
   const updatedRecipe = req.body;
   // const ingredientArray = JSON.parse(updatedRecipe.ingredient_ids)
   // console.log(ingredientArray)
