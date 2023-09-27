@@ -88,6 +88,8 @@ Contributions to this project are welcome! If you'd like to contribute, please f
 2. Create a new branch for your feature or bug fix.
 3. Make your changes and submit a pull request.
 
+(Thanks to bostwiek@gmail.com for letting anyone use his assets.)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
