@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import MatchingRecipe from "./MatchingRecipe";
-import IngredientImagesBox from "./ClickedIngredient";
+import IngredientImagesBox from "./IngredientImagesBox";
 import CookingSound from "../SoundFiles/CookingSound";
 
 function UserForm() {
