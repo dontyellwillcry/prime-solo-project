@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import MatchingRecipe from "./MatchingRecipe";
+import IngredientImagesBox from "./ClickedIngredient";
 import CookingSound from "../SoundFiles/CookingSound";
 
 function UserForm() {
@@ -107,9 +108,10 @@ function UserForm() {
     });
   };
 
-  
+
 
   const ariaLabel = { "aria-label": "description" };
+
   function removeImage(index) {
     const newImages = [...ingredientImage];
     newImages.splice(index, 1); // Remove the image at the specified index
@@ -120,32 +122,10 @@ function UserForm() {
     <>
       <h2>Welcome, {user.username}!</h2>
       <MatchingRecipe />
-      <Box
-        sx={{
-          width: 50,
-          marginLeft: '65%',
-          marginBottom: 0,
-          marginTop: 0,
-          height: 200,
-        }}
-      >
-        <Grid
-          container
-          spacing={0}
-          justifyContent="flex-end"
-          alignItems="flex-start"
-        >
-          {ingredientImage.map((image, index) => (
-            <Grid item key={index}>
-              <img
-                src={image}
-                alt={`Ingredient ${index}`}
-                onClick={() => removeImage(index)}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <IngredientImagesBox
+        ingredientImage={ingredientImage}
+        removeImage={removeImage}
+      />
       <Container maxWidth="xs">
         <Grid container spacing={1}>
           {" "}
@@ -279,15 +259,7 @@ function UserForm() {
                       color="text.secondary"
                       style={{ fontSize: "0.8rem" }}
                     >
-                      {/* Type: {ingredient.type} */}
                     </Typography>
-                    {/* <Button
-                      variant="outlined"
-                      style={{ fontSize: "0.8rem" }}
-                      onClick={() => onIngredientClick(ingredient)}
-                    >
-                      Add to Crockpot
-                    </Button> */}
                   </CardContent>
                 </Card>
               </Grid>
