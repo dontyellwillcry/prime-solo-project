@@ -123,15 +123,10 @@ function UserForm() {
       <Box
         sx={{
           width: 50,
-          marginLeft: 170,
+          marginLeft: '65%',
           marginBottom: 0,
           marginTop: 0,
           height: 200,
-          // backgroundColor: 'primary.dark',
-          // '&:hover': {
-          //   backgroundColor: 'primary.main',
-          //   opacity: [0.9, 0.8, 0.7],
-          // },
         }}
       >
         <Grid

@@ -19,7 +19,7 @@ function MatchingRecipe() {
   const recipeReducer = useSelector((state) => state.recipeReducer);
   const [ingredientImage, setIngredientImages] = useState([])
 
-  
+
 
   // Function to find recipes that match ingredient_ids
   // Define the findMatchingRecipes function
@@ -47,7 +47,7 @@ function MatchingRecipe() {
     // Return the array of matching recipes
     return matchingRecipes;
   }
-  
+
 
   // Use the findMatchingRecipes function when clickedIngredient or recipeReducer changes
   const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer);
@@ -68,7 +68,7 @@ function MatchingRecipe() {
     });
 
     setIsCardOpen(true);
-    
+
   }
 
   function closeCard() {
@@ -85,102 +85,94 @@ function MatchingRecipe() {
     width: '300px', // Set your desired width here
     height: '100px', // Set your desired height here
     marginRight: "950px"
-    
+
   };
 
   return (
     <>
-      
+
       {/* Render content based on conditions */}
-    {matchingRecipes.length > 0 ? (
-      
-      <Container maxWidth="md" style={customContainerStyle}>
-        
-        <Grid
-          container
-          spacing={3}
-          sx={{ flexGrow: 1 }}
-          justifyContent="center"
-        >
-          
-          {matchingRecipes.map((recipe) => (
-            <Grid item xs={3} key={recipe.recipe_id}>
-              {isCardOpen && (
-              //   <Modal
-              //   // open={open}
-              //   // onClose={handleClose}
-              //   aria-labelledby="modal-modal-title"
-              //   aria-describedby="modal-modal-description"
-              // >
-                <Card
-                  sx={{
-                    width: 200,
-                    height: 200,
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    border: "2px solid #000",
-                    marginBottom: 0,
-                  }}
-                  onClick={closeCard}
-                >
-                  <CardContent>
-                    <img
-                      src={recipe.recipe_image}
-                      alt={recipe.name}
-                      style={{ maxWidth: "100%", height: "auto" }}
-                    />
-                    <Typography
-                      variant="h5"
-                      component="div"
-                      style={{ fontSize: "1rem" }}
-                    >
-                      {recipe.name}
-                    </Typography>
-                    
-                    <Button
-                      variant="outlined"
-                      style={{ fontSize: "0.8rem" }}
-                      onClick={() => addToFavorite(recipe.recipe_id)}
-                    >
-                      Favorite
-                    </Button>
-                  </CardContent>
+      {matchingRecipes.length > 0 ? (
+
+        <Container maxWidth="md" style={customContainerStyle}>
+
+          <Grid
+            container
+            spacing={3}
+            sx={{ flexGrow: 1 }}
+            justifyContent="center"
+          >
+
+            {matchingRecipes.map((recipe) => (
+              <Grid item xs={3} key={recipe.recipe_id}>
+                {isCardOpen && (
+                  <Card
+                    sx={{
+                      width: 200,
+                      height: 200,
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      border: "2px solid #000",
+                      marginBottom: 0,
+                    }}
+                    onClick={closeCard}
+                  >
+                    <CardContent>
+                      <img
+                        src={recipe.recipe_image}
+                        alt={recipe.name}
+                        style={{ maxWidth: "100%", height: "auto" }}
+                      />
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        style={{ fontSize: "1rem" }}
+                      >
+                        {recipe.name}
+                      </Typography>
+
+                      <Button
+                        variant="outlined"
+                        style={{ fontSize: "0.8rem" }}
+                        onClick={() => addToFavorite(recipe.recipe_id)}
+                      >
+                        Favorite
+                      </Button>
+                    </CardContent>
                   </Card>
                   // </Modal>
-              )}
-              {RecipeReady()}
+                )}
+                {RecipeReady()}
 
-            </Grid>
-          ))}
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      ) : clickedIngredient.length > 0 ? (
+        <img
+          src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
+          alt="Recipe Placeholder"
+          style={{
+            width: "100px",
+            height: "auto",
+            marginBottom: "0px",
+            marginTop: "10px",
+          }}
+        />
+      ) : (
+        <Grid>
+          <img
+            src={"/images/icons/crockpot.png"}
+            alt="Recipe Placeholder"
+            style={{
+              width: "100px",
+              height: "auto",
+              marginBottom: "0px",
+              marginTop: "10px",
+            }}
+
+          />
         </Grid>
-      </Container>
-    ) : clickedIngredient.length > 0 ? (
-      <img
-        src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
-        alt="Recipe Placeholder"
-        style={{
-          width: "100px",
-          height: "auto",
-          marginBottom: "0px",
-          marginTop: "10px",
-        }}
-      />
-    ) : (
-      <Grid>
-      <img
-        src={"/images/icons/crockpot.png"}
-        alt="Recipe Placeholder"
-        style={{
-          width: "100px",
-          height: "auto",
-          marginBottom: "0px",
-          marginTop: "10px",
-        }}
-        
-      />
-          {/* {CookingSound()} */}
-
-      </Grid>
-    )}
+      )}
     </>
   );
 }
