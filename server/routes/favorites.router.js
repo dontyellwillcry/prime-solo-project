@@ -6,6 +6,9 @@ const {
 } = require("../modules/authentication-middleware.js");
 
 router.get("/", rejectUnauthenticated, (req, res) => {
+  //ARRAY(...) AS ingredient_images: This constructs an array of images associated with the ingredients in each recipe. 
+  //It uses a subquery to select image column from the ingredients table where the id matches any of the ingredient_ids in the current recipe. 
+  //The result is stored as an array and aliased as ingredient_images.
   let query = `SELECT recipe.*, favorites.user_id, ARRAY(SELECT image FROM ingredients WHERE id = ANY(recipe.ingredient_ids)) AS ingredient_images
   FROM recipe
   JOIN favorites ON recipe.id = favorites.recipe_id
