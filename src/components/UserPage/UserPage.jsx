@@ -31,27 +31,14 @@ function UserPage() {
     dispatch({ type: "FETCH_RECIPE" });
     dispatch({ type: "FETCH_FAVORITE" });
   }, []);
-  const containerStyle = {
-    maxWidth: '100', // Set the max width as needed
-    marginLeft: '500px', // Move the container to the left
-    marginRight: '0',
-    marginTop: '0px', // Adjust the top margin as needed
-    // Add other inline styles here
-  };
+  
   return (
     <div>
-      
-      <Container maxWidth="xs" style={containerStyle}>
-      {/* <img src="https://media.tenor.com/42WtOr1eqBoAAAAj/chester-dst.gif" alt="Animated GIF" onClick={toggleAudio}/>
-      <p>Don't Click Me</p> */}
-      <FormGroup>
-      <FormControlLabel control={<Checkbox defaultUnchecked onClick={toggleAudio}/>} label="Sound On/Off" />
-      
-    </FormGroup>
+      <Container className="music">
+        <FormGroup>
+          <FormControlLabel control={<Checkbox defaultUnchecked onClick={toggleAudio} />} label="Music On/Off" />
+        </FormGroup>
       </Container>
-      
-      {/* <button onClick={toggleAudio}>Play Music</button> */}
-
       <UserForm />
     </div>
   );
