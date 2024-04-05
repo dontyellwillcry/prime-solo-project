@@ -102,6 +102,15 @@ input {
 body {
   text-align: center;
 }
-/* .container {
-  margin-left: 60px;
-} */
+
+
+.container {
+  width: 1536px;
+  margin: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+  min-height:  100hv;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

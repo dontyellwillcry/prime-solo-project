@@ -35,7 +35,7 @@ function InfoPage() {
     };
 
   return (
-    <div className="container">
+    <div>
       {/* <Typography marginBottom={5}>Flavorpits</Typography> */}
       <img
           src={"https://media.tenor.com/NC4dlQa2BjoAAAAj/dont-starve-wilson.gif"}
