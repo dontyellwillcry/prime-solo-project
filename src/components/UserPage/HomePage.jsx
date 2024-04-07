@@ -6,10 +6,11 @@ import Container from "@mui/material/Container";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import "./HomePage.css";
 
 
 
-function UserPage() {
+function Homeage() {
   const dispatch = useDispatch();
   const audio = new Audio("/sounds/StartScreen_130bpm_3.4time_vinyl.mp3");
   audio.loop = true;
@@ -44,4 +45,4 @@ function UserPage() {
   );
 }
 
-export default UserPage;
+export default Homeage;
