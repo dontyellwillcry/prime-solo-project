@@ -32,10 +32,10 @@ function Homeage() {
     dispatch({ type: "FETCH_RECIPE" });
     dispatch({ type: "FETCH_FAVORITE" });
   }, []);
-  
+
   return (
     <div>
-      <Container className="music">
+      <Container className="container">
         <FormGroup>
           <FormControlLabel control={<Checkbox defaultUnchecked onClick={toggleAudio} />} label="Music On/Off" />
         </FormGroup>
