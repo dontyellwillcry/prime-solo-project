@@ -94,17 +94,18 @@ function MatchingRecipe() {
       {/* Render content based on conditions */}
       {matchingRecipes.length > 0 ? (
 
-        <Container maxWidth="md" style={customContainerStyle}>
+        // <Container maxWidth="md" style={customContainerStyle}>
 
           <Grid
-            container
-            spacing={3}
-            sx={{ flexGrow: 1 }}
-            justifyContent="center"
+            // container
+            // spacing={3}
+            // sx={{ flexGrow: 1 }}
+            // justifyContent="center"
           >
 
             {matchingRecipes.map((recipe) => (
-              <Grid item xs={3} key={recipe.recipe_id}>
+              <Grid  key={recipe.recipe_id}>
+               
                 {isCardOpen && (
                   <Card
                     sx={{
@@ -112,7 +113,7 @@ function MatchingRecipe() {
                       height: 200,
                       backgroundColor: "rgba(255, 255, 255, 0.1)",
                       border: "2px solid #000",
-                      marginBottom: 0,
+                      // marginBottom: 0,
                     }}
                     onClick={closeCard}
                   >
@@ -142,11 +143,11 @@ function MatchingRecipe() {
                   // </Modal>
                 )}
                 {RecipeReady()}
-
+                
               </Grid>
             ))}
           </Grid>
-        </Container>
+        // </Container>
       ) : clickedIngredient.length > 0 ? (
         <img
           src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}

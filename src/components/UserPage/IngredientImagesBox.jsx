@@ -7,32 +7,27 @@ import Grid from "@mui/material/Grid";
 //? I have to pass ingredientImage and removeImage as props so that it would still fuction.
 const IngredientImagesBox = ({ ingredientImage, removeImage }) => {
   return (
-    <Box
-      sx={{
-        width: 50,
-        marginLeft: "65%",
-        marginBottom: 0,
-        marginTop: 0,
-        height: 200,
-      }}
-    >
-      <Grid
-        container
-        spacing={0}
-        justifyContent="flex-end"
-        alignItems="flex-start"
-      >
+    // <Box
+    //   sx={{
+    //     width: 50,
+    //     marginLeft: "65%",
+    //     marginBottom: 0,
+    //     marginTop: 0,
+    //     height: 200,
+    //   }}
+    // >
+      <>
         {ingredientImage.map((image, index) => (
-          <Grid item key={index}>
+          <div item key={index}>
             <img
               src={image}
               alt={`Ingredient ${index}`}
               onClick={() => removeImage(index)}
             />
-          </Grid>
+          </div>
         ))}
-      </Grid>
-    </Box>
+      </>
+    // </Box>
   );
 };
 

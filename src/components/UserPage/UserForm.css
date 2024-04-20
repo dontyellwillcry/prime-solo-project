@@ -1,0 +1,34 @@
+.ingContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: auto;
+  max-height: 500px;
+  border: 3px solid black;
+  margin: 10px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 500px;
+  border: 3px solid black;
+  margin: 10px;
+  height: 600px;
+  justify-content: space-between;
+}
+
+.crockpotIngredients {
+  width: 50px;
+  margin-left: 10px;
+  /* border: 3px solid black; */
+  height: 200px;
+}
+
+.recipeContainer {
+  border: 3px solid black;
+  max-width: 300px;
+  margin: auto;
+}

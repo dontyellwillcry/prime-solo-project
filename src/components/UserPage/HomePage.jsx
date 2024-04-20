@@ -32,16 +32,16 @@ function Homeage() {
     dispatch({ type: "FETCH_RECIPE" });
     dispatch({ type: "FETCH_FAVORITE" });
   }, []);
-  
+
   return (
-    <div>
+    <>
       <div className="music">
         <FormGroup>
           <FormControlLabel control={<Checkbox defaultUnchecked onClick={toggleAudio} />} label="Music On/Off" />
         </FormGroup>
       </div>
       <UserForm />
-    </div>
+    </>
   );
 }
 

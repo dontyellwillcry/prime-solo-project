@@ -35,9 +35,8 @@ function App() {
 
   return (
     <Router>
-      <div className="container">
+      <div className="appContainer">
         <Nav />
-        {/* <div className="container"> */}
         <BackgroundImage />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
