@@ -35,11 +35,11 @@ function Homeage() {
   
   return (
     <div>
-      <Container className="music">
+      <div className="music">
         <FormGroup>
           <FormControlLabel control={<Checkbox defaultUnchecked onClick={toggleAudio} />} label="Music On/Off" />
         </FormGroup>
-      </Container>
+      </div>
       <UserForm />
     </div>
   );

@@ -10,9 +10,9 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
-    <div>
+    <div className="header">
       <Link to="/home">
-        <h2 className="nav-title" style={{ color: "white" }}>
+        <h2>
           Lets Cook Together
         </h2>
       </Link>
@@ -35,7 +35,6 @@ function Nav() {
             <Link className="navLink" to="/info">
               Favorites
             </Link>
-
             <LogOutButton className="navLink" />
           </>
         )}
@@ -45,15 +44,8 @@ function Nav() {
             Admin Page
           </Link>
         ) : (
-          // <Link className="navLink" to="/user">
-          //   Home
-          // </Link>
           <p></p>
         )}
-
-        {/* <Link className="navLink" to="/about">
-          About
-        </Link> */}
       </div>
     </div>
   );
