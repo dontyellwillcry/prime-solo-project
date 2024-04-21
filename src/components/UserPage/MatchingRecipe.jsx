@@ -18,40 +18,41 @@ function MatchingRecipe() {
   const recipeReducer = useSelector((state) => state.recipeReducer);
   const [ingredientImage, setIngredientImages] = useState([])
   console.log(recipeReducer) //! remove when not needed
-  console.log(clickedIngredient) //! remove when not needed
+  console.log("Clicked Ingredient", clickedIngredient) //! remove when not needed
 
 
 
   // Function to find recipes that match ingredient_ids
   // Define the findMatchingRecipes function
-  function findMatchingRecipes(clickedIngredient, recipes) {
-    // Create an empty array to store matching recipes
+  function findMatchingRecipes(clickedIngredient, recipes, dispatch) {
     const matchingRecipes = [];
 
-    // Iterate through the recipes
     recipes.forEach((recipe) => {
-      // Get the ingredient IDs required by the current recipe
       const ingredientIds = recipe.ingredient_ids;
 
-      // Use the filter method to find ingredients that have matching IDs
       const matchingIngredients = clickedIngredient.filter((ingredient) =>
         ingredientIds.includes(ingredient.id)
       );
 
-      // Check if the number of matching ingredients equals the required number
-      if (matchingIngredients.length === ingredientIds.length) {
-        // If the counts match, add the recipe to the matchingRecipes array
+      if (matchingIngredients.length === ingredientIds.length &&
+        matchingIngredients.every((value, index) => value === ingredientIds[index])) {
         matchingRecipes.push(recipe);
       }
     });
 
-    // Return the array of matching recipes
+    if (clickedIngredient.length > 0 && matchingRecipes.length === 0) {
+      alert("No matching recipes");
+      dispatch({
+        type: "RESET_INGREDIENT",
+      });
+    }
+
     return matchingRecipes;
   }
 
 
   // Use the findMatchingRecipes function when clickedIngredient or recipeReducer changes
-  const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer);
+  const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer, dispatch);
 
   console.log("matchingRecipes", matchingRecipes);
 
