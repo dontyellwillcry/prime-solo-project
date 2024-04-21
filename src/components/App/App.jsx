@@ -16,7 +16,7 @@ import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import AboutPage from "../AboutPage/AboutPage";
 import Homeage from "../UserPage/HomePage";
-import InfoPage from "../InfoPage/InfoPage";
+import FavoritePage from "../FavoritePage/FavoritePage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
@@ -70,9 +70,9 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/favorites"  
           >
-            <InfoPage />
+            <FavoritePage />
           </ProtectedRoute>
 
           <Route exact path="/login">

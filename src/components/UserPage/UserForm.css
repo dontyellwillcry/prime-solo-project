@@ -1,34 +1,56 @@
-.ingContainer {
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  /* border: 3px solid black; */
+  height: 700px;
+  align-items: center;
+  
+}
+
+/* .recipeContainer {
+  border: 3px solid black;
+  flex: 1;
+  width: 500px;
+  height: 500px;
+
+} */
+
+.welcome {
+  /* margin-bottom: 100px; */
+}
+
+.form {
+  position: absolute;
+  margin-top: 100px;
+  
+}
+
+
+.searchedRecipe {
+  /* margin-right: 700px; */
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+}
+
+
+.crockpotIngredients {
+  /* border: 3px solid black; */
+  width: 280px;
+  height: 50px;
+  margin-bottom: 20px;
+  /* width: 500px; */
+  /* flex: 1; */
+}
+
+.ingredientContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   overflow: auto;
-  max-height: 500px;
+  max-height: 400px;
   border: 3px solid black;
   margin: 10px;
-}
-
-.formContainer {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  max-height: 500px;
-  border: 3px solid black;
-  margin: 10px;
-  height: 600px;
-  justify-content: space-between;
-}
-
-.crockpotIngredients {
-  width: 50px;
-  margin-left: 10px;
-  /* border: 3px solid black; */
-  height: 200px;
-}
-
-.recipeContainer {
-  border: 3px solid black;
-  max-width: 300px;
-  margin: auto;
 }

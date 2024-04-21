@@ -110,7 +110,6 @@ function UserForm() {
   };
 
 
-
   const ariaLabel = { "aria-label": "description" };
 
   function removeImage(index) {
@@ -122,125 +121,83 @@ function UserForm() {
   return (
     <>
       <div className="formContainer">
-        <h2 className="welcome">Welcome, {user.username}!</h2>
+        
         <div className="recipeContainer">
-          <MatchingRecipe />
-        </div>
-        <div className="crockpotIngredients">
+          <h2 className="welcome">Welcome, {user.username}!</h2>
+          <div className="crockpotIngredients">
           <IngredientImagesBox
             ingredientImage={ingredientImage}
             removeImage={removeImage}
           />
         </div>
-        {/* <Container maxWidth="xs"> */}
-          {/* <Grid container spacing={1}> */}
-            <div>
-            {" "}
-            {/* <Grid item xs={12}> */}
-              <form onSubmit={searchRecipe}>
-                <div>
-                  {/* <Grid container spacing={1} alignItems="center"> */}
-                    {" "}
-                    {/* <Grid item xs={8}> */}
-                      {/* <Box
-                        sx={{
-                          "& > :not(style)": { m: 1 },
-                        }}
-                        noValidate
-                        autoComplete="on"
-                      > */}
-                        <TextField
-                          placeholder="Search Recipe"
-                          type="text"
-                          id="name"
-                          name="name"
-                          variant="standard"
-                          inputProps={{ "aria-label": ariaLabel }}
-                          value={formData} // Changed this from formData.name to just formData so the input can be cleared. Check this later if you get errors
-                          onChange={(event) => setFormData(event.target.value)}
-                        />
-                      {/* </Box> */}
-                    {/* </Grid> */}
-                    {/* <Grid item xs={4}> */}
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        style={buttonStyle}
-                      >
-                        SEARCH
+          <MatchingRecipe />
+          {" "}
+          <div className="form">
+            {/* <form onSubmit={searchRecipe}>
+              <TextField
+                placeholder="Search Recipe"
+                type="text"
+                id="name"
+                name="name"
+                variant="standard"
+                inputProps={{ "aria-label": ariaLabel }}
+                value={formData} // Changed this from formData.name to just formData so the input can be cleared. Check this later if you get errors
+                onChange={(event) => setFormData(event.target.value)}
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                style={buttonStyle}
+              >
+                SEARCH
+              </Button>
+
+            </form> */}
+          </div>
+          </div>
+          {recipe.name !== "" ? (
+              <div className="searchedRecipe">
+                {isCardOpen && (
+                  <Card
+                    sx={{
+                      maxWidth: 300,
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    }}
+                    onClick={handleCloseClick}
+                  >
+                    <CardMedia
+                      sx={{ height: 190 }}
+                      image={recipe.recipe_image}
+                      title={recipe.name}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {recipe.name}
+                      </Typography>
+                      <img src={recipe.ingredient_images[0]} />
+                      <img src={recipe.ingredient_images[1]} />
+                      <img src={recipe.ingredient_images[2]} />
+                      <img src={recipe.ingredient_images[3]} />
+                      <Typography variant="body2" color="text.secondary">
+                        {recipe.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" onClick={addFavorite}>
+                        Favorite
                       </Button>
-                    {/* </Grid> */}
-                  {/* </Grid> */}
-                </div>
-              </form>
-            {/* </Grid> */}
-            </div>
-          {/* </Grid> */}
-        {/* </Container> */}
-        {recipe.name !== "" ? (
-          <Container maxWidth="sm">
-            <Grid
-              justifyContent="center"
-              container
-              spacing={5}
-              sx={{ flexGrow: 1 }}
-              columns={{ xs: 4 }}
-              marginBottom={1}
-              marginTop={10}
-              marginLeft={-40}
-            >
-              {isCardOpen && (
-                <Card
-                  sx={{
-                    maxWidth: 300,
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  }}
-                  onClick={handleCloseClick}
-                >
-                  <CardMedia
-                    sx={{ height: 190 }}
-                    image={recipe.recipe_image}
-                    title={recipe.name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {recipe.name}
-                    </Typography>
-                    <img src={recipe.ingredient_images[0]} />
-                    <img src={recipe.ingredient_images[1]} />
-                    <img src={recipe.ingredient_images[2]} />
-                    <img src={recipe.ingredient_images[3]} />
-                    <Typography variant="body2" color="text.secondary">
-                      {recipe.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" onClick={addFavorite}>
-                      Favorite
-                    </Button>
-                  </CardActions>
-                </Card>
-              )}
-            </Grid>
-          </Container>
-        ) : (
-          <p></p>
-        )}
+                    </CardActions>
+                  </Card>
+                )}
+              </div>
+          ) : (
+            <p></p>
+          )}
+        
       </div>
-      {/* <Container style={{ maxWidth: "1040px" }}> */}
-      {/* <div
-          style={{
-            marginTop: "100px",
-            maxHeight: "500px",
-            overflow: "auto",
-            marginLeft: "90px",
-          }}
-        > */}
-      {/* <Grid container spacing={6} sx={{ flexGrow: 1 }} columns={{ xs: 12 }}> */}
-      <div className="ingContainer">
+      <div className="ingredientContainer">
         {ingredientReducer.map((ingredient) => (
-          // item xs={3} changes how close the cards are together.
           <Grid item xs={3} key={ingredient.id}>
             <Card
               sx={{
@@ -276,9 +233,6 @@ function UserForm() {
           </Grid>
         ))}
       </div>
-      {/* </Grid> */}
-      {/* </div> */}
-      {/* </Container> */}
     </>
   );
 }

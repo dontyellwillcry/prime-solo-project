@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import RecipeReady from "../SoundFiles/RecipeReady";
+import "./MatchingRecipe.css"
 
 
 
@@ -89,92 +88,57 @@ function MatchingRecipe() {
   };
 
   return (
-    <>
-
-      {/* Render content based on conditions */}
+    // <>
+    <div>
       {matchingRecipes.length > 0 ? (
+        <div>
+          {matchingRecipes.map((recipe) => (
+            <div>
+              {isCardOpen && (
+                <Card className="crockpotCard"
+                  key={recipe.recipe_id}
+                  onClick={closeCard}
+                >
+                  <CardContent>
+                    <img
+                      src={recipe.recipe_image}
+                      alt={recipe.name}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                    <Typography
+                      variant="h5"
+                      component="div"
+                      style={{ fontSize: "1rem" }}
+                    >
+                      {recipe.name}
+                    </Typography>
 
-        // <Container maxWidth="md" style={customContainerStyle}>
-
-          <Grid
-            // container
-            // spacing={3}
-            // sx={{ flexGrow: 1 }}
-            // justifyContent="center"
-          >
-
-            {matchingRecipes.map((recipe) => (
-              <Grid  key={recipe.recipe_id}>
-               
-                {isCardOpen && (
-                  <Card
-                    sx={{
-                      width: 200,
-                      height: 200,
-                      backgroundColor: "rgba(255, 255, 255, 0.1)",
-                      border: "2px solid #000",
-                      // marginBottom: 0,
-                    }}
-                    onClick={closeCard}
-                  >
-                    <CardContent>
-                      <img
-                        src={recipe.recipe_image}
-                        alt={recipe.name}
-                        style={{ maxWidth: "100%", height: "auto" }}
-                      />
-                      <Typography
-                        variant="h5"
-                        component="div"
-                        style={{ fontSize: "1rem" }}
-                      >
-                        {recipe.name}
-                      </Typography>
-
-                      <Button
-                        variant="outlined"
-                        style={{ fontSize: "0.8rem" }}
-                        onClick={() => addToFavorite(recipe.recipe_id)}
-                      >
-                        Favorite
-                      </Button>
-                    </CardContent>
-                  </Card>
-                  // </Modal>
-                )}
-                {RecipeReady()}
-                
-              </Grid>
-            ))}
-          </Grid>
-        // </Container>
+                    <Button
+                      variant="outlined"
+                      style={{ fontSize: "0.8rem" }}
+                      onClick={() => addToFavorite(recipe.recipe_id)}
+                    >
+                      Favorite
+                    </Button>
+                  </CardContent>
+                </Card>
+              )}
+              {RecipeReady()}
+            </div>
+          ))}
+        </div>
       ) : clickedIngredient.length > 0 ? (
-        <img
+        <img className="imgCrockpot"
           src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
           alt="Recipe Placeholder"
-          style={{
-            width: "100px",
-            height: "auto",
-            marginBottom: "0px",
-            marginTop: "10px",
-          }}
         />
       ) : (
-        <Grid>
-          <img
-            src={"/images/icons/crockpot.png"}
-            alt="Recipe Placeholder"
-            style={{
-              width: "100px",
-              height: "auto",
-              marginBottom: "0px",
-              marginTop: "10px",
-            }}
-
-          />
-        </Grid>
+        <img className="imgCrockpot"
+          src={"/images/icons/crockpot.png"}
+          alt="Recipe Placeholder"
+        />
       )}
-    </>
+    </div>
   );
 }
 

@@ -16,17 +16,18 @@ const IngredientImagesBox = ({ ingredientImage, removeImage }) => {
     //     height: 200,
     //   }}
     // >
-      <>
-        {ingredientImage.map((image, index) => (
-          <div item key={index}>
-            <img
-              src={image}
-              alt={`Ingredient ${index}`}
-              onClick={() => removeImage(index)}
-            />
-          </div>
-        ))}
-      </>
+    <>
+      {ingredientImage.map((image, index) => (
+        // <div item key={index}>
+          <img
+            item key={index}
+            src={image}
+            alt={`Ingredient ${index}`}
+            onClick={() => removeImage(index)}
+          />
+        // </div>
+      ))}
+    </>
     // </Box>
   );
 };

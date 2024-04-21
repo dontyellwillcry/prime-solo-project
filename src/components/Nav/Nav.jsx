@@ -32,7 +32,7 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/info">
+            <Link className="navLink" to="/favorites">
               Favorites
             </Link>
             <LogOutButton className="navLink" />
