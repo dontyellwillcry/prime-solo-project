@@ -17,6 +17,8 @@ function MatchingRecipe() {
   const clickedIngredient = useSelector((state) => state.clickedIngredient);
   const recipeReducer = useSelector((state) => state.recipeReducer);
   const [ingredientImage, setIngredientImages] = useState([])
+  console.log(recipeReducer) //! remove when not needed
+  console.log(clickedIngredient) //! remove when not needed
 
 
 
@@ -80,15 +82,9 @@ function MatchingRecipe() {
 
 
   }
-  const customContainerStyle = {
-    width: '300px', // Set your desired width here
-    height: '100px', // Set your desired height here
-    marginRight: "950px"
 
-  };
 
   return (
-    // <>
     <div>
       {matchingRecipes.length > 0 ? (
         <div>
