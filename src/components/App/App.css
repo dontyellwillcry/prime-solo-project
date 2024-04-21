@@ -1,6 +1,5 @@
-/* html,
-body,
 
+<<<<<<< HEAD
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -104,6 +103,9 @@ body {
 }
 
 .container {
+=======
+.appContainer {
+>>>>>>> feature
   width: 50%;
   margin: auto;
   padding-left: 50px;
@@ -112,7 +114,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+<<<<<<< HEAD
   color: blue;
 
   /* background-color: blue; */
+=======
+  text-align: center;
+
+>>>>>>> feature
 }

@@ -36,24 +36,21 @@ function InfoPage() {
 
   return (
     <div>
-      {/* <Typography marginBottom={5}>Flavorpits</Typography> */}
       <img
           src={"https://media.tenor.com/NC4dlQa2BjoAAAAj/dont-starve-wilson.gif"}
           alt="Recipe Placeholder"
           style={{ marginBottom: "50px", marginTop: "50px" }}
         />
-      <Container maxWidth="lg"  style={containerStyle}>
+      {/* <Container maxWidth="lg"  style={containerStyle}> */}
         <Grid container spacing={6} sx={{ flexGrow: 1 }} columns={{ xs: 10 }}>
           {favoriteReducer.map((favorite) => (
-            // item xs={3} changes how close the cards are together.
             <Grid item xs={3} key={favorite.id}>
               <Card
                 sx={{
-                  width: 300, // Changes the width of my card
-                  height: 335, // Changes height.
-                  // backgroundColor: "rgba(255, 255, 255, 0.1)", 
+                  width: 300, 
+                  height: 335, 
                   backgroundColor: "orange", 
-                  border: "2px solid #000", // Add a border
+                  border: "2px solid #000", 
                 }}
               >
                 <CardContent>
@@ -120,7 +117,7 @@ function InfoPage() {
             </Grid>
           ))}
         </Grid>
-      </Container>
+      {/* </Container> */}
     </div>
   );
 }
