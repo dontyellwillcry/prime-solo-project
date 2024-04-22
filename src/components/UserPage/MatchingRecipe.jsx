@@ -24,35 +24,34 @@ function MatchingRecipe() {
 
   // Function to find recipes that match ingredient_ids
   // Define the findMatchingRecipes function
-  function findMatchingRecipes(clickedIngredient, recipes, dispatch) {
+  function findMatchingRecipes(clickedIngredient, recipes) {
     const matchingRecipes = [];
 
     recipes.forEach((recipe) => {
       const ingredientIds = recipe.ingredient_ids;
 
-      const matchingIngredients = clickedIngredient.filter((ingredient) =>
-        ingredientIds.includes(ingredient.id)
+      const matchingIngredients = ingredientIds.filter((recipeId) =>
+        recipe.ingredient_ids.every((ingredientId) =>
+          clickedIngredient.some((clicked) => clicked.id === ingredientId)
+        )
       );
 
       if (matchingIngredients.length === ingredientIds.length &&
         matchingIngredients.every((value, index) => value === ingredientIds[index])) {
+
         matchingRecipes.push(recipe);
       }
     });
-
-    if (clickedIngredient.length > 0 && matchingRecipes.length === 0) {
-      alert("No matching recipes");
-      dispatch({
-        type: "RESET_INGREDIENT",
-      });
-    }
-
     return matchingRecipes;
   }
 
 
+
+
+
   // Use the findMatchingRecipes function when clickedIngredient or recipeReducer changes
   const matchingRecipes = findMatchingRecipes(clickedIngredient, recipeReducer, dispatch);
+
 
   console.log("matchingRecipes", matchingRecipes);
 
@@ -87,53 +86,60 @@ function MatchingRecipe() {
 
   return (
     <div>
-      {matchingRecipes.length > 0 ? (
-        <div>
-          {matchingRecipes.map((recipe) => (
-            <div>
-              {isCardOpen && (
-                <Card className="crockpotCard"
-                  key={recipe.recipe_id}
-                  onClick={closeCard}
-                >
-                  <CardContent>
-                    <img
-                      src={recipe.recipe_image}
-                      alt={recipe.name}
-                      style={{ maxWidth: "100%", height: "auto" }}
-                    />
-                    <Typography
-                      variant="h5"
-                      component="div"
-                      style={{ fontSize: "1rem" }}
-                    >
-                      {recipe.name}
-                    </Typography>
-
-                    <Button
-                      variant="outlined"
-                      style={{ fontSize: "0.8rem" }}
-                      onClick={() => addToFavorite(recipe.recipe_id)}
-                    >
-                      Favorite
-                    </Button>
-                  </CardContent>
-                </Card>
-              )}
-              {RecipeReady()}
-            </div>
-          ))}
-        </div>
-      ) : clickedIngredient.length > 0 ? (
-        <img className="imgCrockpot"
-          src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
-          alt="Recipe Placeholder"
-        />
+      {matchingRecipes.length === 0 && clickedIngredient.length > 0 ? (
+        // Display loading indicator or placeholder while waiting for recipes
+        <p>No Matching Recipes!!!</p>
       ) : (
-        <img className="imgCrockpot"
-          src={"/images/icons/crockpot.png"}
-          alt="Recipe Placeholder"
-        />
+        matchingRecipes.length > 0 ? (
+          <div>
+            {matchingRecipes.map((recipe) => (
+              <div key={recipe.recipe_id}>
+                {isCardOpen && (
+                  <Card className="crockpotCard"
+                    key={recipe.recipe_id}
+                    onClick={closeCard}
+                  >
+                    <CardContent>
+                      <img
+                        src={recipe.recipe_image}
+                        alt={recipe.name}
+                        style={{ maxWidth: "100%", height: "auto" }}
+                      />
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        style={{ fontSize: "1rem" }}
+                      >
+                        {recipe.name}
+                      </Typography>
+  
+                      <Button
+                        variant="outlined"
+                        style={{ fontSize: "0.8rem" }}
+                        onClick={() => addToFavorite(recipe.recipe_id)}
+                      >
+                        Favorite
+                      </Button>
+                    </CardContent>
+                  </Card>
+                )}
+                {RecipeReady()}
+              </div>
+            ))}
+          </div>
+        ) : (
+          clickedIngredient.length > 0 ? (
+            <img className="imgCrockpot"
+              src={"https://media.tenor.com/0KQEvukP8lYAAAAj/crock-pot.gif"}
+              alt="Recipe Placeholder"
+            />
+          ) : (
+            <img className="imgCrockpot"
+              src={"/images/icons/crockpot.png"}
+              alt="Recipe Placeholder"
+            />
+          )
+        )
       )}
     </div>
   );
