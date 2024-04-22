@@ -88,7 +88,11 @@ function MatchingRecipe() {
     <div>
       {matchingRecipes.length === 0 && clickedIngredient.length > 0 ? (
         // Display loading indicator or placeholder while waiting for recipes
-        <p>No Matching Recipes!!!</p>
+        
+        <img 
+              src={"https://media1.tenor.com/m/ZWd2z4Iy97UAAAAC/idiot-sandwich.gif"}
+              alt="Recipe Placeholder"
+            />
       ) : (
         matchingRecipes.length > 0 ? (
           <div>
