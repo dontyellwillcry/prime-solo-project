@@ -86,7 +86,7 @@ function MatchingRecipe() {
 
   return (
     <div>
-      {matchingRecipes.length === 0 && clickedIngredient.length > 0 ? (
+      {matchingRecipes.length === 0 && clickedIngredient.length === 4 ? (
         // Display loading indicator or placeholder while waiting for recipes
         
         <img 
