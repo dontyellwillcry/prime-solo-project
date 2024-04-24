@@ -63,17 +63,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-// router.delete("/:id", (req, res) => {
-//   pool
-//     .query("DELETE FROM recipe WHERE id=$1", [req.params.id])
-//     .then((result) => {
-//       res.sendStatus(200);
-//     })
-//     .catch((error) => {
-//       console.log("Error DELETE /api/recipe", error);
-//       res.sendStatus(500);
-//     });
-// });
+
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   const recipeId = req.params.id;
 
@@ -100,12 +90,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 
 router.put("/:id", (req, res) => {
   const updatedRecipe = req.body;
-  // const ingredientArray = JSON.parse(updatedRecipe.ingredient_ids)
-  // console.log(ingredientArray)
-  
-
-  const queryText = `UPDATE recipe
-  SET
+  const queryText = `UPDATE recipe SET
     "name" = $1,
     "health" = $2,
     "hunger" = $3,
