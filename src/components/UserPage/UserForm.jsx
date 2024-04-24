@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./UserForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import CookpotOpen from "../SoundFiles/CookpotOpen";
@@ -15,9 +15,11 @@ import CookingSound from "../SoundFiles/CookingSound";
 
 function UserForm() {
   const dispatch = useDispatch();
+  const clickRef = useRef(0);
   const user = useSelector((store) => store.user);
   const recipeReducer = useSelector((store) => store.recipeReducer);
   const ingredientReducer = useSelector((store) => store.ingredientReducer);
+  const clickedIngredient = useSelector((state) => state.clickedIngredient);
   const [formData, setFormData] = useState("");
   const [ingredientImage, setIngredientImages] = useState([]);
   const [cookingTimer, setCookingTimer] = useState(0);
@@ -30,6 +32,8 @@ function UserForm() {
     description: "",
     image: "",
   });
+
+
 
   function searchRecipe(event) {
     event.preventDefault();
@@ -59,8 +63,7 @@ function UserForm() {
       payload: { id: recipe.recipe_id }, // Remember to put your payload in an object or your Saga/router will get mad
     });
   }
-  // let cookingTimer = 0;
-  // let recipeReadyCalled = false;
+ 
   useEffect(() => {
     if (cookingTimer === 4) {
       CookingSound();
@@ -70,7 +73,6 @@ function UserForm() {
 
   function addIngredient(ingredient) {
     setCookingTimer((prevTimer) => prevTimer + 1); // Increment the timer
-
     setTimeout(() => {
       dispatch({
         type: "CLICK_INGREDIENT",
@@ -83,9 +85,18 @@ function UserForm() {
   }
 
   function onIngredientClick(ingredient) {
+    clickRef.current++;
+    if (clickRef.current > 4) {
+      alert("You cannot cook with more than 4 items")
+      clickRef.current = 0;
+      dispatch({
+        type: "RESET_INGREDIENT",
+      })
+    }
     setIngredientImages([...ingredientImage, ingredient.image]);
     addIngredient(ingredient);
     ingredientClickSound();
+    clickRef
   }
 
   const buttonStyle = {
@@ -109,7 +120,7 @@ function UserForm() {
 
   function removeImage(index) {
     const newImages = [...ingredientImage];
-    // newImages.splice(index, 1); // Remove the image at the specified index
+    newImages.splice(index, 1); // Remove the image at the specified index
     setIngredientImages([]);
   }
 
@@ -124,8 +135,8 @@ function UserForm() {
               removeImage={removeImage}
             />
           </div>
-          <MatchingRecipe 
-          removeImage={removeImage}
+          <MatchingRecipe
+            removeImage={removeImage}
           />
           {" "}
           <div className="form">
@@ -197,15 +208,15 @@ function UserForm() {
           <Grid item xs={3} key={ingredient.id}>
             <Card
               sx={{
-                width: 110,
-                height: 115,
+                width: 180,
+                height: 155,
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
                 border: "2px solid white",
                 margin: 4,
                 color: 'white',
                 display: 'flex',
                 flexDirection: 'column',
-                // alignItems: 'center',
+                alignItems: 'center',
               }}
               onClick={() => onIngredientClick(ingredient)}
             >
@@ -213,12 +224,12 @@ function UserForm() {
                 <img
                   src={ingredient.image}
                   alt={ingredient.name}
-                  style={{ maxWidth: "100%", height: "auto" }}
+                  style={{ maxWidth: "100%", height: "auto", }}
                 />
                 <Typography
                   variant="h5"
                   component="div"
-                  style={{ fontSize: "1rem", margin: '5px 0' }}
+                  style={{ fontSize: "1rem", margin: '5px 0', display: 'flex', justifyContent: 'center' }}
                 >
                   {ingredient.name}
                 </Typography>
