@@ -118,15 +118,14 @@ function UserForm() {
   return (
     <>
       <div className="formContainer">
-        
         <div className="recipeContainer">
           <h2 className="welcome">Welcome, {user.username}!</h2>
           <div className="crockpotIngredients">
-          <IngredientImagesBox
-            ingredientImage={ingredientImage}
-            removeImage={removeImage}
-          />
-        </div>
+            <IngredientImagesBox
+              ingredientImage={ingredientImage}
+              removeImage={removeImage}
+            />
+          </div>
           <MatchingRecipe />
           {" "}
           <div className="form">
@@ -152,46 +151,46 @@ function UserForm() {
 
             </form> */}
           </div>
+        </div>
+        {recipe.name !== "" ? (
+          <div className="searchedRecipe">
+            {isCardOpen && (
+              <Card
+                sx={{
+                  maxWidth: 300,
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                }}
+                onClick={handleCloseClick}
+              >
+                <CardMedia
+                  sx={{ height: 190 }}
+                  image={recipe.recipe_image}
+                  title={recipe.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {recipe.name}
+                  </Typography>
+                  <img src={recipe.ingredient_images[0]} />
+                  <img src={recipe.ingredient_images[1]} />
+                  <img src={recipe.ingredient_images[2]} />
+                  <img src={recipe.ingredient_images[3]} />
+                  <Typography variant="body2" color="text.secondary">
+                    {recipe.description}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small" onClick={addFavorite}>
+                    Favorite
+                  </Button>
+                </CardActions>
+              </Card>
+            )}
           </div>
-          {recipe.name !== "" ? (
-              <div className="searchedRecipe">
-                {isCardOpen && (
-                  <Card
-                    sx={{
-                      maxWidth: 300,
-                      backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    }}
-                    onClick={handleCloseClick}
-                  >
-                    <CardMedia
-                      sx={{ height: 190 }}
-                      image={recipe.recipe_image}
-                      title={recipe.name}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {recipe.name}
-                      </Typography>
-                      <img src={recipe.ingredient_images[0]} />
-                      <img src={recipe.ingredient_images[1]} />
-                      <img src={recipe.ingredient_images[2]} />
-                      <img src={recipe.ingredient_images[3]} />
-                      <Typography variant="body2" color="text.secondary">
-                        {recipe.description}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small" onClick={addFavorite}>
-                        Favorite
-                      </Button>
-                    </CardActions>
-                  </Card>
-                )}
-              </div>
-          ) : (
-            <p></p>
-          )}
-        
+        ) : (
+          <p></p>
+        )}
+
       </div>
       <div className="ingredientContainer">
         {ingredientReducer.map((ingredient) => (
@@ -201,12 +200,16 @@ function UserForm() {
                 width: 110,
                 height: 115,
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
-                border: "2px solid #000",
-                margin: 4
+                border: "2px solid white",
+                margin: 4,
+                color: 'white',
+                display: 'flex',
+                flexDirection: 'column',
+                // alignItems: 'center',
               }}
               onClick={() => onIngredientClick(ingredient)}
             >
-              <CardContent>
+              <CardContent style={{ textAlign: 'center' }}> {/* Center align content */}
                 <img
                   src={ingredient.image}
                   alt={ingredient.name}
@@ -215,7 +218,7 @@ function UserForm() {
                 <Typography
                   variant="h5"
                   component="div"
-                  style={{ fontSize: "1rem" }}
+                  style={{ fontSize: "1rem", margin: '5px 0' }} // Add margin to create space
                 >
                   {ingredient.name}
                 </Typography>
@@ -224,9 +227,11 @@ function UserForm() {
                   color="text.secondary"
                   style={{ fontSize: "0.8rem" }}
                 >
+                  {/* Add any additional content here */}
                 </Typography>
               </CardContent>
             </Card>
+
           </Grid>
         ))}
       </div>

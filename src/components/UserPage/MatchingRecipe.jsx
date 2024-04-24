@@ -80,7 +80,7 @@ function MatchingRecipe() {
   const removeRamsey = () => {
     dispatch({
       type: "RESET_INGREDIENT",
-      
+
     })
 
   }
@@ -89,13 +89,13 @@ function MatchingRecipe() {
     <div>
       {matchingRecipes.length === 0 && clickedIngredient.length === 4 ? (
         // Display loading indicator or placeholder while waiting for recipes
-        
-        <img 
-              src={"https://media1.tenor.com/m/ZWd2z4Iy97UAAAAC/idiot-sandwich.gif"}
-              alt="Recipe Placeholder"
-              onClick={removeRamsey}
-              className="gordonRamsey"
-            />
+
+        <img
+          src={"https://media1.tenor.com/m/ZWd2z4Iy97UAAAAC/idiot-sandwich.gif"}
+          alt="Recipe Placeholder"
+          onClick={removeRamsey}
+          className="gordonRamsey"
+        />
       ) : (
         matchingRecipes.length > 0 ? (
           <div>
@@ -119,7 +119,7 @@ function MatchingRecipe() {
                       >
                         {recipe.name}
                       </Typography>
-  
+
                       <Button
                         variant="outlined"
                         style={{ fontSize: "0.8rem" }}
