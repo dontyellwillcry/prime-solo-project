@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./UserForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import CookpotOpen from "../SoundFiles/CookpotOpen";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 import MatchingRecipe from "./MatchingRecipe";
 import IngredientImagesBox from "./IngredientImagesBox";
 import CookingSound from "../SoundFiles/CookingSound";
@@ -70,6 +67,7 @@ function UserForm() {
       setCookingTimer(0); // Reset the timer
     }
   }, [cookingTimer]);
+
   function addIngredient(ingredient) {
     setCookingTimer((prevTimer) => prevTimer + 1); // Increment the timer
 
@@ -111,8 +109,8 @@ function UserForm() {
 
   function removeImage(index) {
     const newImages = [...ingredientImage];
-    newImages.splice(index, 1); // Remove the image at the specified index
-    setIngredientImages(newImages);
+    // newImages.splice(index, 1); // Remove the image at the specified index
+    setIngredientImages([]);
   }
 
   return (
@@ -126,7 +124,9 @@ function UserForm() {
               removeImage={removeImage}
             />
           </div>
-          <MatchingRecipe />
+          <MatchingRecipe 
+          removeImage={removeImage}
+          />
           {" "}
           <div className="form">
             {/* <form onSubmit={searchRecipe}>
@@ -209,7 +209,7 @@ function UserForm() {
               }}
               onClick={() => onIngredientClick(ingredient)}
             >
-              <CardContent style={{ textAlign: 'center' }}> {/* Center align content */}
+              <CardContent style={{ textAlign: 'center' }}>
                 <img
                   src={ingredient.image}
                   alt={ingredient.name}
@@ -218,7 +218,7 @@ function UserForm() {
                 <Typography
                   variant="h5"
                   component="div"
-                  style={{ fontSize: "1rem", margin: '5px 0' }} // Add margin to create space
+                  style={{ fontSize: "1rem", margin: '5px 0' }}
                 >
                   {ingredient.name}
                 </Typography>
@@ -227,7 +227,6 @@ function UserForm() {
                   color="text.secondary"
                   style={{ fontSize: "0.8rem" }}
                 >
-                  {/* Add any additional content here */}
                 </Typography>
               </CardContent>
             </Card>
