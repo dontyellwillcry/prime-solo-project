@@ -96,7 +96,6 @@ function UserForm() {
     setIngredientImages([...ingredientImage, ingredient.image]);
     addIngredient(ingredient);
     ingredientClickSound();
-    clickRef
   }
 
   const buttonStyle = {
