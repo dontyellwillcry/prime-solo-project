@@ -109,9 +109,6 @@ function UserForm() {
     });
   };
 
-
-  const ariaLabel = { "aria-label": "description" };
-
   function removeImage(index) {
     const newImages = [...ingredientImage];
     newImages.splice(index, 1); // Remove the image at the specified index

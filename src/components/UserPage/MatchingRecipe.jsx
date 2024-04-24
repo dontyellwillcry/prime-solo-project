@@ -17,8 +17,6 @@ function MatchingRecipe() {
   const clickedIngredient = useSelector((state) => state.clickedIngredient);
   const recipeReducer = useSelector((state) => state.recipeReducer);
   const [ingredientImage, setIngredientImages] = useState([])
-  console.log(recipeReducer) //! remove when not needed
-  console.log("Clicked Ingredient", clickedIngredient) //! remove when not needed
 
 
 
@@ -67,9 +65,7 @@ function MatchingRecipe() {
     dispatch({
       type: "RESET_INGREDIENT",
     });
-
     setIsCardOpen(true);
-
   }
 
   function closeCard() {
@@ -79,10 +75,15 @@ function MatchingRecipe() {
       type: "RESET_INGREDIENT",
     });
     setIsCardOpen(true);
-
-
   }
 
+  const removeRamsey = () => {
+    dispatch({
+      type: "RESET_INGREDIENT",
+      
+    })
+
+  }
 
   return (
     <div>
@@ -92,6 +93,8 @@ function MatchingRecipe() {
         <img 
               src={"https://media1.tenor.com/m/ZWd2z4Iy97UAAAAC/idiot-sandwich.gif"}
               alt="Recipe Placeholder"
+              onClick={removeRamsey}
+              className="gordonRamsey"
             />
       ) : (
         matchingRecipes.length > 0 ? (
