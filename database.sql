@@ -37,7 +37,7 @@ CREATE TABLE favorites (
 -- Insert a new recipe into the "recipe" table with an array of ingredient IDs
 INSERT INTO recipe (name, health, hunger, sanity, ingredient_ids, description, image)
 VALUES
-    ('Fish Cordon Bleu', 20, 37.5, -10, ARRAY[3, 3, 8, 8], 'requires two Frog Legs and Fishes with a total Fish value of 1.0 or higher, and takes 40 seconds to cook.', 'images/crockpot/fishcordonbleu.png');
+    ('Fish Cordon Bleu', 20, 37.5, -10, ARRAY[3, 20, 24, 38], 'requires two Frog Legs and Fishes with a total Fish value of 1.0 or higher, and takes 40 seconds to cook.', 'images/crockpot/fishcordonbleu.png');
 
 
     INSERT INTO ingredients (name, type, image)

@@ -80,6 +80,7 @@ function MatchingRecipe({ removeImage }) {
     dispatch({
       type: "RESET_INGREDIENT",
     })
+    window.location.reload();
   }
 
   return (
